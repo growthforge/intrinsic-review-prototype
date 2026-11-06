@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Intrinsic Review — Investment research &amp; education</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FBF8F2;
+    --paper-raise:#FFFFFF;
+    --ink:#18131F;
+    --muted:#6E6858;
+    --accent:#D8A13A;
+    --accent-ink:#93650D;
+    --accent-2:#B8283C;
+    --navy:#122A4A;
+    --line:#E6DFCE;
+    --focus:#B8283C;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#15131C;
+      --paper-raise:#1D1A26;
+      --ink:#F1ECDD;
+      --muted:#A9A38F;
+      --accent:#E8B84A;
+      --accent-ink:#E8B84A;
+      --accent-2:#E2596B;
+      --navy:#0D1E36;
+      --line:#332F3C;
+      --focus:#E8B84A;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#15131C;
+    --paper-raise:#1D1A26;
+    --ink:#F1ECDD;
+    --muted:#A9A38F;
+    --accent:#E8B84A;
+    --accent-ink:#E8B84A;
+    --accent-2:#E2596B;
+    --navy:#0D1E36;
+    --line:#332F3C;
+    --focus:#E8B84A;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{max-width:100%;}
+  h1,h2,h3{font-family:'Source Serif 4',Georgia,'Times New Roman',serif; margin:0; font-weight:600; letter-spacing:-0.01em;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  :focus-visible{outline:2px solid var(--focus); outline-offset:3px;}
+
+  /* ---------- utility bar ---------- */
+  .util-bar{
+    border-bottom:1px solid var(--line);
+    font-size:12.5px;
+    color:var(--muted);
+  }
+  .util-bar .wrap{display:flex; justify-content:space-between; align-items:center; height:38px;}
+  .util-bar .date{letter-spacing:.02em;}
+  .util-links{display:flex; gap:18px;}
+  .util-links a{text-decoration:none; color:var(--muted); transition:color .15s;}
+  .util-links a:hover{color:var(--ink);}
+
+  /* ---------- masthead ---------- */
+  .masthead{padding:34px 0 22px; text-align:center; border-bottom:1px solid var(--line);}
+  .wordmark{font-size:44px; letter-spacing:-0.015em;}
+  .wordmark a{text-decoration:none; color:var(--ink);}
+  .tagline{margin:8px 0 0; color:var(--muted); font-size:15px;}
+
+  /* ---------- primary nav ---------- */
+  .primary-nav{border-bottom:1px solid var(--line); background:var(--paper); position:sticky; top:0; z-index:40;}
+  .primary-nav .wrap{display:flex; align-items:center; justify-content:space-between; height:52px;}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    text-decoration:none; font-size:14.5px; color:var(--ink);
+    padding:6px 0; border-bottom:2px solid transparent; transition:border-color .15s, color .15s;
+  }
+  .nav-links a:hover{border-bottom-color:var(--accent);}
+  .nav-links a.active{border-bottom-color:var(--accent-2); color:var(--accent-2); font-weight:500;}
+  .nav-cta{
+    display:inline-block; font-size:13.5px; font-weight:600; text-decoration:none;
+    color:var(--navy); background:var(--accent); padding:8px 16px; border-radius:2px;
+    white-space:nowrap;
+  }
+  .menu-btn{display:none; background:none; border:1px solid var(--line); border-radius:2px; width:38px; height:38px; cursor:pointer; color:var(--ink);}
+  .menu-btn span{display:block; width:16px; height:1.5px; background:currentColor; margin:3.5px auto;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    --ink:#F6F1E1; --muted:#B7C0D6; --line:rgba(255,255,255,0.16); --paper-raise:rgba(255,255,255,0.05);
+    background:var(--navy); color:var(--ink);
+    padding:64px 0 58px; border-bottom:1px solid var(--line); position:relative; overflow:hidden;
+  }
+  .hero-grid{display:grid; grid-template-columns:1.5fr 1fr; gap:56px; align-items:start; position:relative;}
+  .rings{position:absolute; right:-90px; top:-70px; width:360px; height:360px; opacity:.55; pointer-events:none;}
+  .eyebrow-line{display:flex; align-items:center; gap:10px; color:var(--muted); font-size:13px; margin-bottom:18px;}
+  .eyebrow-line .dot{width:6px; height:6px; border-radius:50%; background:var(--accent);}
+  .hero h1{font-size:clamp(34px,4.6vw,52px); line-height:1.1; max-width:14ch;}
+  .hero .dek{margin:22px 0 28px; font-size:17px; color:var(--muted); max-width:52ch; line-height:1.6;}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
+  .btn-primary{
+    background:var(--accent); color:var(--navy); text-decoration:none; font-size:14.5px; font-weight:600;
+    padding:13px 24px; border-radius:2px; display:inline-block;
+  }
+  .btn-secondary{
+    color:var(--ink); text-decoration:none; font-size:14.5px; font-weight:500;
+    padding:12px 4px; border-bottom:1px solid var(--accent); display:inline-block;
+  }
+
+  .issue-index{background:var(--paper-raise); border:1px solid var(--line); padding:26px 24px; backdrop-filter:blur(2px);}
+  .issue-index h2{font-size:13px; font-family:'Inter',sans-serif; font-weight:600; margin-bottom:4px;}
+  .issue-index .sub{font-size:12.5px; color:var(--muted); margin-bottom:16px;}
+  .issue-index ol{list-style:none; margin:0; padding:0;}
+  .issue-index li{border-top:1px solid var(--line);}
+  .issue-index li:first-child{border-top:none;}
+  .issue-index a{
+    display:flex; justify-content:space-between; gap:14px; text-decoration:none; color:var(--ink);
+    padding:11px 0; font-size:14px;
+  }
+  .issue-index a:hover .idx-title{color:var(--accent);}
+  .idx-num{color:var(--muted); font-variant-numeric:tabular-nums; font-size:13px;}
+  .idx-title{flex:1;}
+  .idx-desc{display:block; color:var(--muted); font-size:12px; margin-top:2px; font-weight:400;}
+
+  /* ---------- featured + latest ---------- */
+  .featured-section{padding:52px 0; border-bottom:1px solid var(--line);}
+  .section-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:26px;}
+  .section-head h2{font-size:22px;}
+  .section-head .see-all{font-size:13.5px; text-decoration:none; color:var(--muted); border-bottom:1px solid var(--line);}
+  .featured-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:48px;}
+  .featured-story{border-top:1px solid var(--line); padding-top:20px;}
+  .tag{font-size:12px; color:var(--accent-ink); font-weight:600;}
+  .tag.research{color:var(--accent-2);}
+  .featured-story h3{font-size:27px; line-height:1.25; margin:10px 0 12px;}
+  .featured-story h3 a{text-decoration:none; color:var(--ink);}
+  .featured-story p{color:var(--muted); font-size:15px; line-height:1.65; max-width:48ch; margin:0 0 14px;}
+  .byline{font-size:12.5px; color:var(--muted);}
+
+  .latest-list{list-style:none; margin:0; padding:0;}
+  .latest-list li{border-top:1px solid var(--line); padding:16px 0;}
+  .latest-list li:last-child{padding-bottom:0;}
+  .latest-list a{text-decoration:none; color:var(--ink); display:block;}
+  .latest-list h4{font-family:'Source Serif 4',serif; font-weight:600; font-size:16.5px; margin:5px 0 4px; line-height:1.35;}
+  .latest-meta{font-size:12px; color:var(--muted);}
+
+  /* ---------- section grid (6 content pillars) ---------- */
+  .pillars{padding:56px 0; border-bottom:1px solid var(--line);}
+  .pillars-intro{max-width:56ch; margin-bottom:40px;}
+  .pillars-intro h2{font-size:24px; margin-bottom:10px;}
+  .pillars-intro p{color:var(--muted); font-size:15px; line-height:1.65;}
+  .pillar-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .pillar{background:var(--paper); padding:28px 26px; display:flex; flex-direction:column; gap:14px;}
+  .pillar-icon{width:34px; height:34px; color:var(--accent-ink);}
+  .pillar h3{font-size:17.5px;}
+  .pillar h3 a{text-decoration:none; color:var(--ink);}
+  .pillar p{font-size:13.5px; color:var(--muted); line-height:1.6; margin:0; flex-grow:1;}
+  .pillar-links{list-style:none; margin:4px 0 0; padding:0; border-top:1px solid var(--line); padding-top:12px;}
+  .pillar-links li{font-size:13px; padding:5px 0;}
+  .pillar-links a{text-decoration:none; color:var(--ink); border-bottom:1px solid transparent;}
+  .pillar-links a:hover{border-bottom-color:var(--accent-2);}
+
+  /* ---------- about teaser + newsletter ---------- */
+  .about-strip{padding:56px 0; border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start;}
+  .about-grid h2{font-size:22px; margin-bottom:14px;}
+  .about-grid p{color:var(--muted); font-size:15px; line-height:1.7; margin:0 0 16px; max-width:48ch;}
+  .newsletter{background:var(--paper-raise); border:1px solid var(--line); padding:28px;}
+  .newsletter h3{font-size:16px; margin-bottom:8px;}
+  .newsletter p{color:var(--muted); font-size:13.5px; margin:0 0 16px;}
+  .newsletter form{display:flex; gap:8px; flex-wrap:wrap;}
+  .newsletter input[type=email]{
+    flex:1; min-width:180px; padding:11px 12px; border:1px solid var(--line); background:var(--paper);
+    color:var(--ink); font-family:inherit; font-size:14px; border-radius:2px;
+  }
+  .newsletter .fine{margin-top:10px; font-size:11.5px; color:var(--muted);}
+
+  /* ---------- footer ---------- */
+  footer{padding:44px 0 40px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; margin-bottom:36px;}
+  .footer-brand .wordmark-sm{font-family:'Source Serif 4',serif; font-size:20px; margin-bottom:10px;}
+  .footer-brand p{color:var(--muted); font-size:13px; max-width:32ch; line-height:1.6;}
+  .footer-col h4{font-size:12.5px; font-weight:600; margin-bottom:12px;}
+  .footer-col ul{list-style:none; margin:0; padding:0;}
+  .footer-col li{margin-bottom:9px;}
+  .footer-col a{text-decoration:none; color:var(--muted); font-size:13.5px;}
+  .footer-col a:hover{color:var(--ink);}
+  .footer-bottom{border-top:1px solid var(--line); padding-top:20px; display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; font-size:12px; color:var(--muted);}
+  .footer-bottom .disclosure{max-width:60ch; line-height:1.6;}
+
+  /* ---------- mobile ---------- */
+  @media (max-width: 860px){
+    .hero-grid{grid-template-columns:1fr; gap:34px;}
+    .rings{display:none;}
+    .featured-grid{grid-template-columns:1fr; gap:36px;}
+    .pillar-grid{grid-template-columns:repeat(2,1fr);}
+    .about-grid{grid-template-columns:1fr; gap:30px;}
+    .footer-grid{grid-template-columns:1fr 1fr; row-gap:28px;}
+  }
+  @media (max-width: 620px){
+    .util-links a:nth-child(2){display:none;}
+    .wordmark{font-size:32px;}
+    .nav-links{
+      position:fixed; inset:0 0 0 auto; top:calc(52px + env(safe-area-inset-top,0px)); width:78%; max-width:300px;
+      background:var(--paper-raise); border-left:1px solid var(--line); flex-direction:column; gap:0;
+      padding:8px 22px; transform:translateX(100%); transition:transform .22s ease; height:100vh;
+    }
+    .nav-links.open{transform:translateX(0);}
+    .nav-links li{border-bottom:1px solid var(--line);}
+    .nav-links a{display:block; padding:14px 0; border-bottom:none !important;}
+    .nav-cta{display:none;}
+    .menu-btn{display:block;}
+    .pillar-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr; row-gap:26px;}
+    .footer-bottom{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<div class="util-bar">
+  <div class="wrap">
+    <span class="date">Tuesday, 22 September 2026 &nbsp;·&nbsp; London</span>
+    <div class="util-links">
+      <a href="#">Newsletter</a>
+      <a href="#">Search</a>
+    </div>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="wordmark"><a href="#">The Intrinsic Review</a></div>
+    <p class="tagline">Investment education, research and market analysis — for readers who want to know what things are actually worth.</p>
+  </div>
+</header>
+
+<nav class="primary-nav">
+  <div class="wrap">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="#start-here">Start Here</a></li>
+      <li><a href="#learn">Learn</a></li>
+      <li><a href="#investing">Investing</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#markets">Markets</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a class="nav-cta" href="#">Subscribe</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <svg class="rings" viewBox="0 0 340 340" fill="none" aria-hidden="true">
+        <circle cx="170" cy="170" r="30" stroke="var(--accent)" stroke-width="1"/>
+        <circle cx="170" cy="170" r="70" stroke="var(--accent)" stroke-width="1"/>
+        <circle cx="170" cy="170" r="115" stroke="var(--accent)" stroke-width="1"/>
+        <circle cx="170" cy="170" r="165" stroke="var(--accent-2)" stroke-width="1"/>
+      </svg>
+      <div>
+        <div class="eyebrow-line"><span class="dot"></span> A publication on investing, markets and portfolio thinking</div>
+        <h1>Price is what you see. Value is what you find.</h1>
+        <p class="dek">The Intrinsic Review is a research-led guide for people who want to look past the number on the screen — from your first ETF through to portfolio construction, fund research and macro analysis. No tips. No noise. Just the thinking behind good decisions.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="#start-here">Start here</a>
+          <a class="btn-secondary" href="#research">Browse research →</a>
+        </div>
+      </div>
+
+      <div class="issue-index">
+        <h2>In this publication</h2>
+        <p class="sub">Eight sections, one way of thinking about money</p>
+        <ol>
+          <li><a href="#start-here"><span class="idx-num">01</span><span class="idx-title">Start Here<span class="idx-desc">Investing from the ground up</span></span></a></li>
+          <li><a href="#learn"><span class="idx-num">02</span><span class="idx-title">Learn<span class="idx-desc">The broader library — markets, portfolios, economics</span></span></a></li>
+          <li><a href="#investing"><span class="idx-num">03</span><span class="idx-title">Investing<span class="idx-desc">Stocks, ETFs, funds and strategy</span></span></a></li>
+          <li><a href="#portfolio"><span class="idx-num">04</span><span class="idx-title">Portfolio<span class="idx-desc">Allocation, diversification, risk</span></span></a></li>
+          <li><a href="#research"><span class="idx-num">05</span><span class="idx-title">Research<span class="idx-desc">Fund, ETF and equity research notes</span></span></a></li>
+          <li><a href="#markets"><span class="idx-num">06</span><span class="idx-title">Markets<span class="idx-desc">Macro, central banks, geopolitics</span></span></a></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED + LATEST -->
+  <section class="featured-section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Latest</h2>
+        <a class="see-all" href="#">View archive</a>
+      </div>
+      <div class="featured-grid">
+        <div class="featured-story">
+          <span class="tag research">Research note</span>
+          <h3><a href="#">Reading the yield curve: what inversions actually tell investors</a></h3>
+          <p>Curve inversions get a lot of airtime as recession signals. We look at what the data actually shows, where the signal breaks down, and how much weight it deserves in a long-term portfolio.</p>
+          <span class="byline">12 min read · Research desk</span>
+        </div>
+
+        <ul class="latest-list">
+          <li>
+            <a href="#">
+              <span class="tag">Start Here</span>
+              <h4>What compounding really means (and why it's slow)</h4>
+              <span class="latest-meta">6 min read</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="tag">Markets</span>
+              <h4>Central banks in September: a quieter kind of pivot</h4>
+              <span class="latest-meta">9 min read</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="tag">Portfolio</span>
+              <h4>Rebalancing: how often is actually too often?</h4>
+              <span class="latest-meta">7 min read</span>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <span class="tag">Investing</span>
+              <h4>ETFs vs index funds: the practical differences</h4>
+              <span class="latest-meta">8 min read</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIX PILLARS -->
+  <section class="pillars">
+    <div class="wrap">
+      <div class="pillars-intro">
+        <h2>Where to go next</h2>
+        <p>Every reader arrives at a different point. These six sections are built to meet you where you are — and take you a step further.</p>
+      </div>
+
+      <div class="pillar-grid">
+
+        <div class="pillar" id="start-here">
+          <svg class="pillar-icon" viewBox="0 0 34 34" fill="none"><path d="M4 26h6v-6H4v6Zm10 0h6v-12h-6v12Zm10 0h6V8h-6v18Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          <h3><a href="#">Start Here</a></h3>
+          <p>A beginner's path through investing — what it is, how stocks, bonds and ETFs work, and the ideas of risk, return, diversification and compounding.</p>
+          <ul class="pillar-links">
+            <li><a href="#">What investing actually means</a></li>
+            <li><a href="#">Stocks, bonds and funds, explained</a></li>
+            <li><a href="#">Why diversification works</a></li>
+          </ul>
+        </div>
+
+        <div class="pillar" id="learn">
+          <svg class="pillar-icon" viewBox="0 0 34 34" fill="none"><path d="M5 8c3-1.5 6-1.5 9 0v18c-3-1.5-6-1.5-9 0V8Zm19 0c-3-1.5-6-1.5-9 0v18c3-1.5 6-1.5 9 0V8Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          <h3><a href="#">Learn</a></h3>
+          <p>The broader library — investing concepts, market mechanics, portfolio theory and the economics that shapes them all.</p>
+          <ul class="pillar-links">
+            <li><a href="#">How financial markets are structured</a></li>
+            <li><a href="#">Inflation, explained properly</a></li>
+            <li><a href="#">A glossary that doesn't talk down to you</a></li>
+          </ul>
+        </div>
+
+        <div class="pillar" id="investing">
+          <svg class="pillar-icon" viewBox="0 0 34 34" fill="none"><path d="M4 24 12 15l6 5 12-14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="15" r="1.6" fill="currentColor"/><circle cx="18" cy="20" r="1.6" fill="currentColor"/></svg>
+          <h3><a href="#">Investing</a></h3>
+          <p>Stocks, ETFs, funds, strategies and themes — practical, research-backed coverage without the noise of stock tips.</p>
+          <ul class="pillar-links">
+            <li><a href="#">A framework for picking ETFs</a></li>
+            <li><a href="#">Growth vs value: does the label matter?</a></li>
+            <li><a href="#">Investment themes worth watching</a></li>
+          </ul>
+        </div>
+
+        <div class="pillar" id="portfolio">
+          <svg class="pillar-icon" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="12" stroke="currentColor" stroke-width="1.4"/><path d="M17 5a12 12 0 0 1 10.4 18V17H17V5Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          <h3><a href="#">Portfolio</a></h3>
+          <p>Asset allocation, diversification and risk management — the discipline of building and maintaining a portfolio.</p>
+          <ul class="pillar-links">
+            <li><a href="#">Building a portfolio from scratch</a></li>
+            <li><a href="#">How much risk are you actually taking?</a></li>
+            <li><a href="#">A simple framework for allocation</a></li>
+          </ul>
+        </div>
+
+        <div class="pillar" id="research">
+          <svg class="pillar-icon" viewBox="0 0 34 34" fill="none"><rect x="7" y="4" width="16" height="22" rx="0.5" stroke="currentColor" stroke-width="1.4"/><path d="M11 10h8M11 15h8M11 20h5" stroke="currentColor" stroke-width="1.2"/><circle cx="24" cy="24" r="4" stroke="currentColor" stroke-width="1.4"/><path d="M27 27l3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <h3><a href="#">Research</a></h3>
+          <p>Fund research, ETF analysis, equity notes and investment themes — the more advanced, professional layer of the publication.</p>
+          <ul class="pillar-links">
+            <li><a href="#">Fund note: global equity factor strategies</a></li>
+            <li><a href="#">How to read a fund factsheet properly</a></li>
+            <li><a href="#">Equity research: a valuation walkthrough</a></li>
+          </ul>
+        </div>
+
+        <div class="pillar" id="markets">
+          <svg class="pillar-icon" viewBox="0 0 34 34" fill="none"><path d="M6 26V6M6 26h22" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><rect x="10" y="16" width="3" height="8" stroke="currentColor" stroke-width="1.2"/><rect x="16" y="10" width="3" height="14" stroke="currentColor" stroke-width="1.2"/><rect x="22" y="19" width="3" height="5" stroke="currentColor" stroke-width="1.2"/></svg>
+          <h3><a href="#">Markets</a></h3>
+          <p>Markets, economics, central banks and macro developments — and increasingly, how geopolitics shapes financial markets.</p>
+          <ul class="pillar-links">
+            <li><a href="#">This month in central banks</a></li>
+            <li><a href="#">What actually moves currency markets</a></li>
+            <li><a href="#">Geopolitics and portfolios: a practical view</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT + NEWSLETTER -->
+  <section class="about-strip" id="about">
+    <div class="wrap about-grid">
+      <div>
+        <h2>About The Intrinsic Review</h2>
+        <p>The Intrinsic Review is an independent publication about investing, markets and portfolio thinking — written for beginners, retail investors, students and anyone who wants to reason more clearly about money.</p>
+        <p>It isn't a stock-tips service. The goal is to help readers build durable investment thinking: understanding how markets work, how portfolios are built, and how to read research critically.</p>
+        <a class="btn-secondary" href="#">Read the full story →</a>
+      </div>
+
+      <div class="newsletter">
+        <h3>Get new notes by email</h3>
+        <p>One email when something new is published. No spam, unsubscribe any time.</p>
+        <form onsubmit="return false;">
+          <input type="email" placeholder="you@email.com" aria-label="Email address" required>
+          <button class="btn-primary" type="submit" style="border:none; cursor:pointer;">Subscribe</button>
+        </form>
+        <p class="fine">Educational content only. Not financial advice.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="wordmark-sm">The Intrinsic Review</div>
+        <p>Investment education, research and market analysis for people who want to think for themselves.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Sections</h4>
+        <ul>
+          <li><a href="#start-here">Start Here</a></li>
+          <li><a href="#learn">Learn</a></li>
+          <li><a href="#investing">Investing</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>More</h4>
+        <ul>
+          <li><a href="#research">Research</a></li>
+          <li><a href="#markets">Markets</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Publication</h4>
+        <ul>
+          <li><a href="#">Newsletter</a></li>
+          <li><a href="#">Disclosures</a></li>
+          <li><a href="#">RSS</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 The Intrinsic Review</span>
+      <span class="disclosure">The Intrinsic Review is published for educational and informational purposes only and does not constitute financial, investment or tax advice.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const navLinks = document.getElementById('navLinks');
+  menuBtn.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+
+</body>
+</html>

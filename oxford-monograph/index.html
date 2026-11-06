@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Intrinsic Review — Direction 02: The Oxford Monograph</title>
+  <!-- Google Fonts: Source Serif 4, Inter, IBM Plex Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Evolved from Author's Original Mock-up Palette */
+      --navy-deep: #0D1E36;
+      --navy-secondary: #122A4A;
+      --cream-light: #FBF8F2;
+      --cream-warm: #F6F1E1;
+      --cream-border: #E5DEC9;
+      --gold-accent: #D8A13A;
+      --gold-accessible: #8C6214;
+      --slate-muted: #465362;
+      --sage-positive: #23634B;
+
+      --font-serif: 'Source Serif 4', Georgia, serif;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'IBM Plex Mono', monospace;
+
+      --ease-scholarly: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--cream-light);
+      color: var(--navy-deep);
+      font-family: var(--font-serif);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--gold-accent);
+      outline-offset: 3px;
+    }
+
+    /* Scholarly Top Covenant Bar */
+    .covenant-strip {
+      background-color: var(--navy-deep);
+      color: var(--cream-light);
+      font-family: var(--font-sans);
+      font-size: 0.76rem;
+      padding: 0.55rem 1.25rem;
+      border-bottom: 2px solid var(--gold-accent);
+      text-align: center;
+    }
+
+    .covenant-strip strong {
+      color: var(--gold-accent);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    /* Editorial Masthead */
+    .masthead {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 0;
+      border-bottom: 1px solid var(--cream-border);
+    }
+
+    .masthead-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--cream-border);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      color: var(--slate-muted);
+    }
+
+    .masthead-brand {
+      text-align: center;
+      padding: 1.75rem 0;
+    }
+
+    .brand-monogram {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--navy-deep);
+      color: var(--gold-accent);
+      font-family: var(--font-serif);
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 0.6rem;
+      border: 1px solid var(--gold-accent);
+    }
+
+    .masthead-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      color: var(--navy-deep);
+    }
+
+    .masthead-tagline {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--slate-muted);
+      font-size: 1.05rem;
+      margin-top: 0.35rem;
+    }
+
+    /* Primary Navigation */
+    .scholar-nav {
+      display: flex;
+      overflow-x: auto;
+      justify-content: flex-start;
+      gap: 0.25rem;
+      padding: 0.65rem 0;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      font-weight: 500;
+      scrollbar-width: none;
+    }
+
+    .scholar-nav::-webkit-scrollbar { display: none; }
+
+    .scholar-nav a {
+      color: var(--navy-deep);
+      text-decoration: none;
+      padding: 0.45rem 0.9rem;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: background-color 200ms ease, color 200ms ease;
+    }
+
+    .scholar-nav a:hover,
+    .scholar-nav a.active {
+      background-color: var(--navy-deep);
+      color: var(--cream-light);
+    }
+
+    /* Concept Finder Bar */
+    .finder-bar {
+      max-width: 820px;
+      margin: 1.5rem auto 2rem;
+      padding: 0 1.25rem;
+    }
+
+    .finder-box {
+      display: flex;
+      align-items: center;
+      background: var(--cream-warm);
+      border: 1px solid var(--cream-border);
+      border-radius: 10px;
+      padding: 0.5rem 0.85rem;
+      box-shadow: 0 4px 16px rgba(13, 30, 54, 0.04);
+    }
+
+    .finder-box input {
+      flex: 1;
+      border: none;
+      background: transparent;
+      font-family: var(--font-sans);
+      font-size: 0.9rem;
+      color: var(--navy-deep);
+      padding: 0.35rem 0.5rem;
+    }
+
+    .finder-box input:focus { outline: none; }
+
+    .prompt-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.65rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      align-items: center;
+    }
+
+    .prompt-pill {
+      background: #fff;
+      border: 1px solid var(--cream-border);
+      color: var(--navy-secondary);
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: border-color 180ms ease, background-color 180ms ease;
+    }
+
+    .prompt-pill:hover {
+      border-color: var(--gold-accent);
+      background: var(--cream-warm);
+    }
+
+    /* Oxford Hero Showcase */
+    .monograph-hero {
+      max-width: 1240px;
+      margin: 0 auto 3rem;
+      padding: 0 1.25rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy-secondary) 100%);
+      color: var(--cream-light);
+      border-radius: 16px;
+      padding: 2.25rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      border: 1px solid rgba(216, 161, 58, 0.35);
+      box-shadow: 0 20px 40px -15px rgba(13, 30, 54, 0.22);
+    }
+
+    .hero-kicker {
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold-accent);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4.2vw, 3.25rem);
+      line-height: 1.12;
+      font-weight: 600;
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-lead {
+      color: rgba(251, 248, 242, 0.86);
+      font-size: 1.05rem;
+      max-width: 58ch;
+      margin-bottom: 1.75rem;
+    }
+
+    .btn-gold {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gold-accent);
+      color: var(--navy-deep);
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 0.75rem 1.4rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 200ms var(--ease-scholarly), background-color 200ms ease;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      background: #e3b04b;
+    }
+
+    .hero-syllabus-box {
+      background: rgba(251, 248, 242, 0.06);
+      border: 1px solid rgba(216, 161, 58, 0.3);
+      border-radius: 12px;
+      padding: 1.35rem;
+    }
+
+    .syllabus-step {
+      display: flex;
+      gap: 0.85rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(251, 248, 242, 0.12);
+    }
+
+    .syllabus-step:last-child { border-bottom: none; }
+
+    .step-roman {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--gold-accent);
+      font-weight: 600;
+      min-width: 28px;
+    }
+
+    /* Syllabus Track Cards */
+    .tracks-section {
+      max-width: 1240px;
+      margin: 0 auto 3.5rem;
+      padding: 0 1.25rem;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 2px solid var(--navy-deep);
+      padding-bottom: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tracks-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .track-card {
+      background: var(--cream-warm);
+      border: 1px solid var(--cream-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 280ms var(--ease-scholarly), border-color 280ms ease, box-shadow 280ms ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .track-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-accent);
+      box-shadow: 0 12px 24px -8px rgba(13, 30, 54, 0.1);
+    }
+
+    .track-badge {
+      font-family: var(--font-sans);
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--gold-accessible);
+      margin-bottom: 0.5rem;
+    }
+
+    .track-title {
+      font-size: 1.35rem;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
+    }
+
+    /* Flagship Monograph Article & Interactive Essay */
+    .monograph-article-wrap {
+      max-width: 1240px;
+      margin: 0 auto 4rem;
+      padding: 0 1.25rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .article-column {
+      max-width: 680px;
+    }
+
+    .chapter-abstract {
+      background: var(--cream-warm);
+      border-top: 3px solid var(--navy-deep);
+      border-bottom: 1px solid var(--cream-border);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 0 0 10px 10px;
+    }
+
+    .dropcap::first-letter {
+      float: left;
+      font-family: var(--font-serif);
+      font-size: 3.7rem;
+      line-height: 0.82;
+      padding-right: 0.6rem;
+      padding-top: 0.15rem;
+      color: var(--navy-deep);
+      font-weight: 700;
+    }
+
+    /* Interactive Inline Glossary Term */
+    .glossary-term {
+      border-bottom: 2px dotted var(--gold-accent);
+      background: rgba(216, 161, 58, 0.12);
+      padding: 0 0.2rem;
+      cursor: pointer;
+      font-weight: 600;
+      border-radius: 3px;
+    }
+
+    .inline-def-box {
+      display: none;
+      background: var(--navy-deep);
+      color: var(--cream-light);
+      font-family: var(--font-sans);
+      font-size: 0.84rem;
+      padding: 0.9rem 1.1rem;
+      border-radius: 8px;
+      margin: 0.75rem 0 1.25rem;
+      border-left: 4px solid var(--gold-accent);
+    }
+
+    .inline-def-box.open {
+      display: block;
+    }
+
+    /* Signature Interactive Widget: Compounding & Fee Erosion Laboratory */
+    .compounding-lab {
+      background: #FFFFFF;
+      border: 1px solid var(--cream-border);
+      border-top: 4px solid var(--gold-accent);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2.25rem 0;
+      box-shadow: 0 12px 30px -10px rgba(13, 30, 54, 0.08);
+      font-family: var(--font-sans);
+    }
+
+    .lab-controls {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--cream-border);
+    }
+
+    .slider-group label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .slider-group input[type="range"] {
+      width: 100%;
+      accent-color: var(--navy-deep);
+      cursor: pointer;
+    }
+
+    .lab-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .metric-card {
+      background: var(--cream-light);
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid var(--cream-border);
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      color: var(--slate-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-top: 0.2rem;
+    }
+
+    /* Scholarly Bookplate Sidebar (Holdings & Non-Advice) */
+    .scholar-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .bookplate-card {
+      background: var(--cream-warm);
+      border: 2px solid var(--navy-deep);
+      border-radius: 10px;
+      padding: 1.35rem;
+      position: relative;
+      font-family: var(--font-sans);
+    }
+
+    .bookplate-title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--navy-deep);
+      border-bottom: 1px solid var(--cream-border);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .fca-covenant-card {
+      background: var(--navy-deep);
+      color: var(--cream-light);
+      border-radius: 10px;
+      padding: 1.35rem;
+      border: 1px solid var(--gold-accent);
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+    }
+
+    /* Classical Book-Rule Table */
+    .monograph-table-wrap {
+      overflow-x: auto;
+      margin: 2rem 0;
+    }
+
+    .monograph-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--font-sans);
+      font-size: 0.85rem;
+      border-top: 2px solid var(--navy-deep);
+      border-bottom: 2px solid var(--navy-deep);
+    }
+
+    .monograph-table th {
+      text-align: left;
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--navy-deep);
+      font-weight: 600;
+      color: var(--navy-deep);
+      background: var(--cream-warm);
+    }
+
+    .monograph-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--cream-border);
+    }
+
+    .monograph-table tr.highlight-row {
+      background: rgba(216, 161, 58, 0.14);
+      font-weight: 600;
+    }
+
+    /* Newsletter Seminar Card */
+    .seminar-box {
+      max-width: 960px;
+      margin: 0 auto 4rem;
+      padding: 0 1.25rem;
+    }
+
+    .seminar-inner {
+      background: var(--navy-deep);
+      color: var(--cream-light);
+      border-radius: 16px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      border: 1px solid var(--gold-accent);
+    }
+
+    .seminar-form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 480px;
+      margin: 1.5rem auto 0;
+    }
+
+    .seminar-input {
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(251, 248, 242, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--cream-light);
+      font-family: var(--font-sans);
+    }
+
+    @media (min-width: 768px) {
+      .scholar-nav { justify-content: center; }
+      .hero-card { grid-template-columns: 1.35fr 1fr; padding: 3rem; align-items: center; }
+      .tracks-grid { grid-template-columns: repeat(3, 1fr); }
+      .lab-controls { grid-template-columns: 1fr 1fr; }
+      .seminar-form { flex-direction: row; }
+      .seminar-input { flex: 1; }
+    }
+
+    @media (min-width: 1024px) {
+      .monograph-article-wrap {
+        grid-template-columns: 1fr 340px;
+        align-items: start;
+      }
+      .scholar-sidebar {
+        position: sticky;
+        top: 2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top FCA Covenant Strip -->
+  <div class="covenant-strip" role="region" aria-label="FCA Educational Notice">
+    <strong>THE OXFORD MONOGRAPH COVENANT:</strong> Strictly UK financial education & research mechanics. Never stock tips, target prices, or personal advice.
+  </div>
+
+  <!-- Masthead -->
+  <header class="masthead">
+    <div class="masthead-top">
+      <span>VOL. IV — AUTUMN 2026</span>
+      <span>BEDFORD & LONDON, UNITED KINGDOM</span>
+      <span>EDITOR: C. VANCE (BSC FINANCE)</span>
+    </div>
+
+    <div class="masthead-brand">
+      <div class="brand-monogram" aria-hidden="true">IR</div>
+      <h1 class="masthead-title">The Intrinsic Review</h1>
+      <p class="masthead-tagline">A Calm, Independent Journal of Investing Mechanics, Portfolios & Company Research</p>
+    </div>
+
+    <nav class="scholar-nav" aria-label="Primary Sections">
+      <a href="#home" class="active">Home</a>
+      <a href="#start-here">Start Here</a>
+      <a href="#tracks">Learn</a>
+      <a href="#tracks">Investing</a>
+      <a href="#monograph-essay">Portfolio</a>
+      <a href="#monograph-essay">Research</a>
+      <a href="#tracks">Markets</a>
+      <a href="#seminar">About</a>
+    </nav>
+  </header>
+
+  <!-- Concept Finder Search -->
+  <section class="finder-bar" role="search">
+    <div class="finder-box">
+      <span style="color: var(--gold-accessible); font-weight: 700; margin-right: 0.4rem;">⌕</span>
+      <input type="search" id="conceptSearch" placeholder="Search the syllabus or ask a foundational question..." aria-label="Search syllabus" />
+    </div>
+    <div class="prompt-pills">
+      <span style="color: var(--slate-muted);">Try filtering:</span>
+      <button class="prompt-pill" data-q="compounding">Compounding & Fees</button>
+      <button class="prompt-pill" data-q="valuation">Company Valuation</button>
+      <button class="prompt-pill" data-q="isa">UK Tax Wrappers</button>
+      <button class="prompt-pill" data-q="">Show All</button>
+    </div>
+  </section>
+
+  <!-- Evolved Navy + Cream + Gold Hero -->
+  <section class="monograph-hero" id="home">
+    <div class="hero-card">
+      <div>
+        <div class="hero-kicker">Start Here • Foundational Philosophy</div>
+        <h2 class="hero-h1">Financial literacy should read like a great book, not a sales pitch.</h2>
+        <p class="hero-lead">
+          Most financial media profits from urgency, noise, and stock promotion. The Intrinsic Review is a quiet library of interactive essays teaching how markets, accounting, and long-term portfolios actually work.
+        </p>
+        <a href="#monograph-essay" class="btn-gold">Read Chapter III: The Tyranny of Fees ↓</a>
+      </div>
+
+      <div class="hero-syllabus-box" id="start-here">
+        <div style="font-family: var(--font-sans); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-accent); margin-bottom: 0.5rem;">
+          Recommended Reading Order
+        </div>
+        <div class="syllabus-step">
+          <span class="step-roman">I.</span>
+          <div>
+            <strong style="display:block; font-family: var(--font-sans); font-size: 0.9rem;">What a Share Actually Represents</strong>
+            <span style="font-size: 0.82rem; color: rgba(251,248,242,0.75);">Fractional ownership of future cash flows vs. ticker speculation.</span>
+          </div>
+        </div>
+        <div class="syllabus-step">
+          <span class="step-roman">II.</span>
+          <div>
+            <strong style="display:block; font-family: var(--font-sans); font-size: 0.9rem;">The Arithmetic of Portfolio Costs</strong>
+            <span style="font-size: 0.82rem; color: rgba(251,248,242,0.75);">How a 1% Ongoing Charges Figure quietly consumes 28% of terminal wealth.</span>
+          </div>
+        </div>
+        <div class="syllabus-step">
+          <span class="step-roman">III.</span>
+          <div>
+            <strong style="display:block; font-family: var(--font-sans); font-size: 0.9rem;">Reading an Annual Report in 60 Minutes</strong>
+            <span style="font-size: 0.82rem; color: rgba(251,248,242,0.75);">Spotting revenue recognition footnotes and working capital shifts.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Study Tracks Grid -->
+  <section class="tracks-section" id="tracks">
+    <div class="section-heading">
+      <h2 style="font-size: 1.65rem;">Curated Study Tracks</h2>
+      <span style="font-family: var(--font-sans); font-size: 0.8rem; color: var(--slate-muted);" id="trackStatus">Showing all 3 core monographs</span>
+    </div>
+
+    <div class="tracks-grid" id="tracksGrid">
+      <article class="track-card" data-tags="compounding portfolio isa etf">
+        <div>
+          <div class="track-badge">Track 01 • Portfolio Architecture</div>
+          <h3 class="track-title">Global Indexing, UK ISAs & Currency Hedging</h3>
+          <p style="font-size: 0.92rem; color: var(--slate-muted); margin-bottom: 1.25rem;">
+            Why equities need no currency hedge over 20-year horizons while global bond allocations require sterling hedging to preserve ballast.
+          </p>
+        </div>
+        <div style="font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; color: var(--navy-deep);">
+          16 Min Monograph →
+        </div>
+      </article>
+
+      <article class="track-card" data-tags="valuation accounting roic research">
+        <div>
+          <div class="track-badge">Track 02 • Company Research</div>
+          <h3 class="track-title">Economic Moats vs. Commodity Competition</h3>
+          <p style="font-size: 0.92rem; color: var(--slate-muted); margin-bottom: 1.25rem;">
+            How switching costs, intangible assets, and scale economies manifest directly in gross margin stability and return on capital.
+          </p>
+        </div>
+        <div style="font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; color: var(--navy-deep);">
+          24 Min Monograph →
+        </div>
+      </article>
+
+      <article class="track-card" data-tags="compounding markets inflation bonds">
+        <div>
+          <div class="track-badge">Track 03 • Market History</div>
+          <h3 class="track-title">Real vs. Nominal Returns Across UK History</h3>
+          <p style="font-size: 0.92rem; color: var(--slate-muted); margin-bottom: 1.25rem;">
+            Examining 120 years of UK equities, gilts, and treasury bills adjusted for Retail and Consumer Price Index inflation.
+          </p>
+        </div>
+        <div style="font-family: var(--font-sans); font-size: 0.78rem; font-weight: 600; color: var(--navy-deep);">
+          19 Min Monograph →
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Flagship Article / Research Note Section -->
+  <main class="monograph-article-wrap" id="monograph-essay">
+    <article class="article-column">
+      <div class="chapter-abstract">
+        <div style="font-family: var(--font-sans); font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gold-accessible); font-weight: 700; margin-bottom: 0.35rem;">
+          Monograph Note • Portfolio & Fund Mechanics
+        </div>
+        <h2 style="font-size: clamp(1.85rem, 3.5vw, 2.65rem); line-height: 1.15; margin-bottom: 0.75rem;">
+          The Quiet Arithmetic of Compounding & OCF Fee Drag
+        </h2>
+        <p style="font-size: 0.95rem; color: var(--slate-muted); font-family: var(--font-sans);">
+          <strong>Abstract:</strong> In most consumer purchases, paying 1% more is trivial. In long-horizon compounding, a 1% annual fee does not cost 1% of your wealth—it surrenders nearly a third of your final retirement pot.<em> (Tap dotted terms in the text to inspect definitions.)</em>
+        </p>
+      </div>
+
+      <p class="dropcap" style="margin-bottom: 1.25rem;">
+        Human intuition evolved to understand linear relationships, not exponential ones. When an investor compares a low-cost global index tracker charging an <span class="glossary-term" tabindex="0" role="button" data-def="def-ocf">Ongoing Charges Figure (OCF)</span> of 0.15% against a traditional actively managed fund charging 1.15%, the 1.00% difference appears harmless on a quarterly statement.
+      </p>
+
+      <div id="def-ocf" class="inline-def-box">
+        <strong>Glossary — Ongoing Charges Figure (OCF):</strong> The standardized UK/UCITS annual percentage deducted directly from a fund's net asset value to cover management, administration, and custody costs. It excludes internal portfolio transaction costs.
+      </div>
+
+      <p style="margin-bottom: 1.25rem;">
+        Yet because fees are deducted from the entire capital base every single year, you lose not only the fee itself, but also all future <span class="glossary-term" tabindex="0" role="button" data-def="def-real">real compounding</span> that pound would have generated over the remaining decades. Use the interactive monograph model below to test this across time horizons.
+      </p>
+
+      <div id="def-real" class="inline-def-box">
+        <strong>Glossary — Real Compounding:</strong> Investment growth measured after deducting the erosive effect of inflation, reflecting true purchasing power in today's pounds (£).
+      </div>
+
+      <!-- Signature Interactive Component: Compounding & Fee Drag Scrubber -->
+      <div class="compounding-lab" role="region" aria-label="Interactive Compounding and Fee Calculator">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 1rem;">
+          <strong style="font-size: 0.95rem; color: var(--navy-deep);">Interactive Figure 3.1 — £10,000 Initial Capital (@ 7% Gross Annual Return)</strong>
+          <span style="font-family: var(--font-mono); font-size: 0.72rem; background: var(--cream-warm); padding: 0.2rem 0.5rem; border-radius: 4px;">ILLUSTRATIVE MATH</span>
+        </div>
+
+        <div class="lab-controls">
+          <div class="slider-group">
+            <label for="yearsInput">
+              <span>Investment Horizon:</span>
+              <span id="yearsLabel" style="color: var(--gold-accessible);">30 Years</span>
+            </label>
+            <input type="range" id="yearsInput" min="10" max="40" step="5" value="30" />
+          </div>
+
+          <div class="slider-group">
+            <label for="feeInput">
+              <span>High-Fee Fund Annual Drag:</span>
+              <span id="feeLabel" style="color: #B91C1C;">1.25% / yr</span>
+            </label>
+            <input type="range" id="feeInput" min="0.50" max="2.00" step="0.25" value="1.25" />
+          </div>
+        </div>
+
+        <div class="lab-metrics">
+          <div class="metric-card">
+            <div class="metric-label">Low-Cost Index (0.15%)</div>
+            <div class="metric-val" id="valLowCost" style="color: var(--sage-positive);">£72,876</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">High-Fee Fund</div>
+            <div class="metric-val" id="valHighFee" style="color: var(--navy-deep);">£52,750</div>
+          </div>
+          <div class="metric-card" style="background: rgba(216, 161, 58, 0.12);">
+            <div class="metric-label">Wealth Lost to Fees</div>
+            <div class="metric-val" id="valFeeLost" style="color: #B91C1C;">£20,126 (27.6%)</div>
+          </div>
+        </div>
+
+        <!-- Dynamic SVG Dual Curve Chart -->
+        <svg viewBox="0 0 560 200" style="width: 100%; height: auto; background: var(--cream-light); border-radius: 8px; border: 1px solid var(--cream-border);" aria-label="Compounding curves comparison chart">
+          <line x1="40" y1="170" x2="530" y2="170" stroke="#CBD5E1" stroke-width="1" />
+          <line x1="40" y1="115" x2="530" y2="115" stroke="#E2E8F0" stroke-dasharray="3,3" stroke-width="1" />
+          <line x1="40" y1="60" x2="530" y2="60" stroke="#E2E8F0" stroke-dasharray="3,3" stroke-width="1" />
+          
+          <!-- Low Cost Curve -->
+          <path id="svgLowPath" d="M 40 165 Q 280 140 530 30" fill="none" stroke="#0D1E36" stroke-width="3" />
+          <!-- High Fee Curve -->
+          <path id="svgHighPath" d="M 40 165 Q 280 150 530 80" fill="none" stroke="#D8A13A" stroke-width="3" stroke-dasharray="6,4" />
+          
+          <text x="48" y="34" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0D1E36">■ Low-Cost Index (0.15% OCF)</text>
+          <text x="48" y="52" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#8C6214">--- Higher-Fee Active Fund</text>
+        </svg>
+      </div>
+
+      <h3 style="font-size: 1.45rem; margin: 1.75rem 0 0.75rem;">Comparing UK Fund Cost Structures</h3>
+      <p style="margin-bottom: 1rem;">
+        When researching an ETF or OEIC Key Investor Information Document (KIID), always separate the ongoing charge from one-off platform custody fees.
+      </p>
+
+      <div class="monograph-table-wrap">
+        <table class="monograph-table">
+          <thead>
+            <tr>
+              <th>Fee Structure Archetype</th>
+              <th>Annual Charge</th>
+              <th>30-Yr Terminal Value (£10k)</th>
+              <th>Portion Retained by Investor</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="highlight-row">
+              <td><strong>Broad Passive Index Tracker</strong></td>
+              <td style="font-family: var(--font-mono);">0.15%</td>
+              <td style="font-family: var(--font-mono);">£72,876</td>
+              <td style="font-family: var(--font-mono);">95.7%</td>
+            </tr>
+            <tr>
+              <td><strong>Factor / Thematic Tilt ETF</strong></td>
+              <td style="font-family: var(--font-mono);">0.55%</td>
+              <td style="font-family: var(--font-mono);">£64,744</td>
+              <td style="font-family: var(--font-mono);">85.0%</td>
+            </tr>
+            <tr>
+              <td><strong>Traditional Active Fund + Platform</strong></td>
+              <td style="font-family: var(--font-mono);">1.25%</td>
+              <td style="font-family: var(--font-mono);">£52,750</td>
+              <td style="font-family: var(--font-mono);">69.3%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <!-- Sticky Right Sidebar: Holdings Bookplate & FCA Notice -->
+    <aside class="scholar-sidebar">
+      <!-- Author Holdings & Conflicts Bookplate -->
+      <div class="bookplate-card">
+        <div class="bookplate-title">
+          <span>Author's Holdings & Conflicts</span>
+          <span style="font-size: 0.7rem; background: var(--navy-deep); color: var(--gold-accent); padding: 0.15rem 0.5rem; border-radius: 4px; font-family: var(--font-sans);">DISCLOSURE</span>
+        </div>
+        <p style="font-size: 0.82rem; color: var(--slate-muted); margin-bottom: 0.85rem;">
+          In accordance with UK editorial integrity standards, the author discloses the following personal portfolio policy:
+        </p>
+        <ul style="font-size: 0.82rem; list-style: none; display: grid; gap: 0.5rem;">
+          <li><strong>• Individual Equities Held:</strong> None (0%)</li>
+          <li><strong>• Personal Strategy:</strong> 100% Global All-Cap Passive Index inside a UK Stocks & Shares ISA.</li>
+          <li><strong>• Commercial Ties:</strong> Zero fund provider sponsorships or affiliate links.</li>
+        </ul>
+      </div>
+
+      <!-- Not Financial Advice Block -->
+      <div class="fca-covenant-card">
+        <div style="color: var(--gold-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.74rem; margin-bottom: 0.45rem;">
+          Not Financial Advice (UK FCA)
+        </div>
+        <p style="line-height: 1.5; color: rgba(251, 248, 242, 0.9);">
+          The Intrinsic Review is an educational publication. Nothing on this site constitutes regulated investment advice under the UK Financial Services and Markets Act 2000. Always consult an FCA-authorised independent financial adviser for personal suitability.
+        </p>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Newsletter Sign-up -->
+  <section class="seminar-box" id="seminar">
+    <div class="seminar-inner">
+      <div class="hero-kicker">The Sunday Seminar</div>
+      <h2 style="font-size: 2.1rem; margin-bottom: 0.6rem;">Begin our free 5-part foundational syllabus.</h2>
+      <p style="max-width: 52ch; margin: 0 auto; color: rgba(251, 248, 242, 0.82); font-family: var(--font-sans); font-size: 0.95rem;">
+        Delivered quietly every Sunday morning. Unsubscribe in a single click at any time.
+      </p>
+      <form class="seminar-form" id="seminarForm" onsubmit="return false;">
+        <input type="email" class="seminar-input" id="seminarEmail" placeholder="Your email address..." required aria-label="Email address" />
+        <button type="submit" class="btn-gold" style="border:none; cursor:pointer; justify-content:center;">Join the Seminar</button>
+      </form>
+      <p id="seminarSuccess" style="display:none; color: var(--gold-accent); font-family: var(--font-sans); font-size: 0.85rem; margin-top: 0.85rem;">
+        ✓ Welcome to The Sunday Seminar. Chapter I has been dispatched to your inbox.
+      </p>
+    </div>
+  </section>
+
+  <script>
+    // 1. Inline Glossary Toggles
+    document.querySelectorAll('.glossary-term').forEach(term => {
+      const toggleDef = () => {
+        const targetId = term.getAttribute('data-def');
+        const box = document.getElementById(targetId);
+        if (box) box.classList.toggle('open');
+      };
+      term.addEventListener('click', toggleDef);
+      term.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleDef();
+        }
+      });
+    });
+
+    // 2. Interactive Compounding & Fee Drag Calculator
+    const yearsInput = document.getElementById('yearsInput');
+    const feeInput = document.getElementById('feeInput');
+    const yearsLabel = document.getElementById('yearsLabel');
+    const feeLabel = document.getElementById('feeLabel');
+    const valLowCost = document.getElementById('valLowCost');
+    const valHighFee = document.getElementById('valHighFee');
+    const valFeeLost = document.getElementById('valFeeLost');
+    const svgLowPath = document.getElementById('svgLowPath');
+    const svgHighPath = document.getElementById('svgHighPath');
+
+    function updateCompounding() {
+      const years = parseInt(yearsInput.value, 10);
+      const highFee = parseFloat(feeInput.value);
+      const grossReturn = 0.07;
+      const lowFee = 0.0015; // 0.15%
+      const principal = 10000;
+
+      yearsLabel.textContent = `${years} Years`;
+      feeLabel.textContent = `${highFee.toFixed(2)}% / yr`;
+
+      const lowTerminal = principal * Math.pow(1 + (grossReturn - lowFee), years);
+      const highTerminal = principal * Math.pow(1 + (grossReturn - (highFee / 100)), years);
+      const lost = lowTerminal - highTerminal;
+      const lostPct = (lost / lowTerminal) * 100;
+
+      const fmt = (n) => '£' + Math.round(n).toLocaleString('en-GB');
+      valLowCost.textContent = fmt(lowTerminal);
+      valHighFee.textContent = fmt(highTerminal);
+      valFeeLost.textContent = `${fmt(lost)} (${lostPct.toFixed(1)}%)`;
+
+      // Update SVG curves dynamically
+      const maxRef = principal * Math.pow(1 + (grossReturn - lowFee), 40);
+      const lowEndY = 165 - Math.min(140, (lowTerminal / maxRef) * 140);
+      const highEndY = 165 - Math.min(140, (highTerminal / maxRef) * 140);
+
+      svgLowPath.setAttribute('d', `M 40 165 Q 290 ${165 - (165 - lowEndY)*0.35} 530 ${lowEndY}`);
+      svgHighPath.setAttribute('d', `M 40 165 Q 290 ${165 - (165 - highEndY)*0.35} 530 ${highEndY}`);
+    }
+
+    yearsInput.addEventListener('input', updateCompounding);
+    feeInput.addEventListener('input', updateCompounding);
+    updateCompounding();
+
+    // 3. Search & Prompt Pills Filter
+    const conceptSearch = document.getElementById('conceptSearch');
+    const trackCards = Array.from(document.querySelectorAll('.track-card'));
+    const trackStatus = document.getElementById('trackStatus');
+
+    function filterTracks(q) {
+      const clean = q.trim().toLowerCase();
+      let count = 0;
+      trackCards.forEach(card => {
+        const text = (card.textContent + ' ' + card.dataset.tags).toLowerCase();
+        if (!clean || text.includes(clean)) {
+          card.style.display = 'flex';
+          count++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      trackStatus.textContent = `Showing ${count} of 3 monographs`;
+    }
+
+    conceptSearch.addEventListener('input', (e) => filterTracks(e.target.value));
+    document.querySelectorAll('.prompt-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        conceptSearch.value = pill.dataset.q;
+        filterTracks(pill.dataset.q);
+      });
+    });
+
+    // 4. Seminar Newsletter
+    document.getElementById('seminarForm').addEventListener('submit', () => {
+      document.getElementById('seminarSuccess').style.display = 'block';
+      document.getElementById('seminarEmail').value = '';
+    });
+  </script>
+</body>
+</html>

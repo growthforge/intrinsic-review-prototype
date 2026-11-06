@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en-GB" data-theme="light">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="googlebot" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F6F2EA">
+<meta name="description" content="The Margin v2: a working editorial prototype for an independent UK finance education publication. All examples and model data are hypothetical.">
+<title>The Intrinsic Review — The Margin / v2</title>
+<script>try{const t=localStorage.getItem('intrinsic-margin-v2-theme');document.documentElement.dataset.theme=t==='dark'||t==='light'?t:(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!--
+THE MARGIN / V2 · COMPLETE BUILDLESS PROTOTYPE
+TYPE: Literata 400/500/600 + italic for editorial display and reading;
+Manrope 400/500/600/700 for interface; platform monospace for figure titles.
+LIGHT: paper #F6F2EA, ink #242822, red #A83D25, olive #E0E5CE,
+muted #596052, field #FFFEFA, rule #B3B9AA.
+DARK: paper #20261F, ink #F2F0E7, red #F2AA91, olive #303B2D,
+muted #C6CDBF, field #283025, rule #66735E.
+GRID: 1320px maximum content; 56px wide-screen, 32px tablet, 22px mobile
+gutters (18px <=360px). Article <=62ch with contents rail + margin notes.
+MOTION TABLE (all animated properties are transform and/or opacity):
+Trigger | Property | From | To | ms | Easing | Stagger | Reduced motion
+First page view | opacity, translateY | 0,16px | 1,0 | 520 |
+cubic-bezier(.22,1,.36,1) | 80ms for each [data-intro] | immediate
+Section enters viewport | opacity, translateY | 0,18px | 1,0 | 480 |
+cubic-bezier(.22,1,.36,1) | 0ms | immediate
+Link hover/focus | arrow translateX | 0 | 5px | 160 |
+cubic-bezier(.2,.8,.2,1) | 0ms | stationary
+Book hover/focus | translateY, rotate | 0,-3deg | -7px,-1deg | 260 |
+cubic-bezier(.22,1,.36,1) | 0ms | stationary
+Series selection | opacity, translateY | 0,5px | 1,0 | 200 |
+cubic-bezier(.22,1,.36,1) | 0ms | immediate
+Dialog opens | opacity, translateY | 0,8px | 1,0 | 180 |
+cubic-bezier(.22,1,.36,1) | 0ms | immediate
+Chart/table view changes | opacity | .35 | 1 | 180 |
+cubic-bezier(.22,1,.36,1) | 0ms | immediate
+Article scroll | progress scaleX | 0 | 1 | 0 (rAF scroll-linked) |
+linear mapping | 0ms | static (meter suppressed)
+Theme, filter, chart path, values and details change instantly.
+No animated colour, stroke, width, height or layout; no autoplay/parallax.
+Native smooth scrolling has browser-defined duration and is disabled under
+prefers-reduced-motion. All content remains available without JavaScript.
+MODEL: no-fee end value P*(1+r)^n; after-fee end value
+P*((1+r)*(1-f))^n. Annual fee applied after each year's hypothetical growth.
+The ending-value gap includes fees AND foregone compounding; it is not the
+sum of fees paid. No contributions, withdrawals, tax, inflation or trading.
+Example data only is offered under CC0; no licence claim for fonts/site assets.
+-->
+<style>
+:root{--paper:#F6F2EA;--ink:#242822;--red:#A83D25;--olive:#E0E5CE;--muted:#596052;--field:#FFFEFA;--rule:#B3B9AA;--shadow:rgba(36,40,34,.13);--serif:'Literata',Georgia,serif;--sans:'Manrope',Arial,sans-serif;--mono:'SFMono-Regular',Consolas,'Liberation Mono',monospace;--ease:cubic-bezier(.22,1,.36,1);color-scheme:light}
+html[data-theme=dark]{--paper:#20261F;--ink:#F2F0E7;--red:#F2AA91;--olive:#303B2D;--muted:#C6CDBF;--field:#283025;--rule:#66735E;--shadow:rgba(0,0,0,.32);color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:auto;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}body:has(dialog[open]){overflow:hidden}::selection{background:var(--olive);color:var(--ink)}button,input{font:inherit;color:inherit}button,a,input,summary{touch-action:manipulation}button{cursor:pointer;border-radius:0}button:disabled{cursor:default;opacity:.65}a{color:inherit;text-underline-offset:.22em}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--red);outline-offset:5px}button:focus:not(:focus-visible){outline:none}h1,h2,h3,h4,p{margin:0}h1,h2,h3,h4{font-weight:400}svg{display:block;max-width:100%}[hidden]{display:none!important}.wrap{width:100%;max-width:1432px;margin:auto;padding:0 56px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.skip{position:absolute;left:16px;top:12px;z-index:100;transform:translateY(-180%);background:var(--ink);color:var(--paper);padding:13px 20px}.skip:focus{transform:none}.eyebrow{font-size:10px;letter-spacing:.15em;line-height:1.7;font-weight:700;text-transform:uppercase}.red{color:var(--red)}.meta{font-size:12px;line-height:1.75;color:var(--muted)}.mono{font-family:var(--mono)}.arrow{display:inline-block;transition:transform 160ms cubic-bezier(.2,.8,.2,1)}a:hover .arrow,a:focus-visible .arrow,button:hover .arrow,button:focus-visible .arrow{transform:translateX(5px)}.text-link{display:inline-flex;align-items:center;gap:24px;min-height:44px;font-size:12px;font-weight:700;text-decoration:none;border-bottom:1px solid currentColor;padding:6px 0}.quiet-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;min-width:44px;background:none;border:0;font-size:12px;font-weight:600;padding:8px 6px}.icon{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5;flex-shrink:0}.dot{display:inline-block;width:6px;height:6px;background:var(--red);border-radius:50%;margin-right:9px;vertical-align:2px}.section-label{display:flex;align-items:center;gap:12px}.section-label::after{content:'';height:1px;flex:1;background:var(--rule)}
+.prototype-strip{border-bottom:1px solid var(--rule);font-size:9px;letter-spacing:.07em;padding:8px 0;color:var(--muted)}.prototype-strip .wrap{display:flex;justify-content:space-between;gap:20px}.header-top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:21px 0 12px}.direction{font-size:10px;line-height:1.7;letter-spacing:.12em;text-transform:uppercase;color:var(--red);font-weight:700}.header-actions{display:flex;gap:22px;align-items:center}.header-actions a{font-size:11px;font-weight:600;text-decoration:none;min-height:44px;display:flex;align-items:center;gap:10px}.masthead{font-family:var(--serif);font-size:clamp(40px,7.1vw,101px);line-height:1.13;letter-spacing:-.065em;padding:4px 0 25px;display:block;text-decoration:none;border-bottom:2px solid var(--ink);white-space:nowrap}.masthead em{font-weight:400}.desktop-nav{display:flex;justify-content:space-between;gap:20px;border-bottom:1px solid var(--ink);padding:3px 0}.desktop-nav a{display:flex;align-items:center;min-height:44px;font-size:11px;font-weight:600;text-decoration:none}.desktop-nav a:first-child{color:var(--red)}.desktop-nav a:hover{text-decoration:underline}.mobile-menu-open{display:none}
+.hero{display:grid;grid-template-columns:1.45fr 1fr;gap:70px;align-items:center;padding:61px 0 58px}.hero h1{font-family:var(--serif);font-size:clamp(45px,5.3vw,76px);line-height:1.13;letter-spacing:-.05em;margin:20px 0 25px;max-width:760px}.hero h1 em{font-weight:400;color:var(--red)}.hero-description{font-size:15px;line-height:1.9;color:var(--muted);max-width:430px;margin-bottom:22px}.hero-actions{display:flex;align-items:center;gap:30px;flex-wrap:wrap}.hero-actions>a:last-child{font-size:11px;text-decoration:none;min-height:44px;display:flex;align-items:center}.cover-scene{position:relative;display:flex;justify-content:center;align-items:center;min-height:425px;padding:20px 25px 25px;isolation:isolate}.cover-scene::before{content:'';position:absolute;inset:5% 0 10%;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);z-index:-1}.cover-scene::after{content:'A LITTLE CAN BECOME A LOT.';position:absolute;right:0;bottom:7px;font:9px/1.5 var(--mono);letter-spacing:.06em;color:var(--muted)}.hero-book{width:290px;aspect-ratio:.75;background:var(--olive);border:1px solid var(--muted);position:relative;transform:rotate(-7deg);padding:29px 30px 22px;box-shadow:9px 8px 0 -3px var(--paper),10px 9px 0 -3px var(--muted),18px 21px 20px -12px var(--shadow);display:flex;flex-direction:column;justify-content:space-between}.hero-book::before{content:'';position:absolute;top:0;bottom:0;left:10px;border-left:1px solid var(--rule)}.hero-book .eyebrow{font-size:9px;letter-spacing:.17em}.hero-book .book-display{font-family:var(--serif);font-size:88px;line-height:1.2;letter-spacing:-.07em;color:var(--red);position:relative}.hero-book .book-display::after{content:'years';display:block;font-size:24px;font-style:italic;letter-spacing:-.04em;line-height:1}.hero-book h2{font-family:var(--serif);font-size:26px;line-height:1.3;letter-spacing:-.04em}.hero-book .cover-bottom{display:flex;justify-content:space-between;border-top:1px solid var(--muted);padding-top:12px;font:9px/1.7 var(--mono);margin-top:22px}.cover-annotation{position:absolute;right:0;top:33%;font-family:var(--serif);font-size:14px;font-style:italic;color:var(--red);transform:rotate(3deg);max-width:111px;line-height:1.6;text-align:center}.cover-annotation::after{content:'';width:46px;border-bottom:1px solid var(--red);display:block;transform:rotate(10deg);margin-top:7px;margin-left:-16px}.editorial-promise{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:24px 0;display:grid;grid-template-columns:1fr 2.3fr;gap:40px}.editorial-promise>p:last-child{font-family:var(--serif);font-size:21px;line-height:1.6;max-width:800px}
+.series{padding:58px 0 52px}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:30px;margin:23px 0 35px}.section-heading h2{font-family:var(--serif);font-size:40px;line-height:1.2;letter-spacing:-.04em}.section-heading .meta{max-width:235px}.series-head-controls{display:flex;align-items:center;gap:18px}.series-count{font-family:var(--mono);font-size:11px;color:var(--muted);white-space:nowrap}.book-index{display:flex;gap:7px}.book-index button{width:44px;height:44px;border:1px solid var(--muted);background:none;font-family:var(--mono);font-size:11px}.book-index button[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}.book-stage{background:var(--olive);border-bottom:1px solid var(--rule);padding:38px 40px 26px;overflow:hidden}.book-track{display:flex;justify-content:space-between;gap:48px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;scrollbar-color:var(--muted) var(--olive);padding:18px 16px 28px;scroll-padding:18px}.book-object{position:relative;flex:1 0 220px;max-width:300px;min-width:0;scroll-snap-align:center;min-height:310px;background:var(--field);color:var(--ink);border:1px solid var(--muted);text-align:left;padding:25px 26px 22px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(-3deg);box-shadow:5px 5px 0 -1px var(--paper),6px 6px 0 -1px var(--muted),13px 18px 17px -11px var(--shadow);transition:transform 260ms var(--ease);isolation:isolate}.book-object::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:1px;background:var(--rule);z-index:-1}.book-object:nth-child(2){background:var(--red);color:var(--paper)}.book-object:nth-child(2)::before{background:currentColor;opacity:.45}.book-object:nth-child(3){background:var(--paper)}.book-object:hover,.book-object:focus-visible{transform:translateY(-7px) rotate(-1deg)}.book-object[aria-pressed=true]::after{content:'OPEN';position:absolute;right:16px;top:-14px;background:var(--ink);color:var(--paper);font:8px var(--mono);padding:7px 10px;letter-spacing:.1em}.book-object .eyebrow{font-size:8px;letter-spacing:.12em}.book-object .spine-number{font-family:var(--serif);font-size:65px;font-style:italic;letter-spacing:-.06em;line-height:1}.book-object .book-title{font-family:var(--serif);font-size:26px;line-height:1.3;letter-spacing:-.04em;margin:21px 0}.book-object .book-bottom{font:9px/1.6 var(--mono);border-top:1px solid currentColor;padding-top:11px;display:flex;justify-content:space-between;gap:16px}.series-panel{display:grid;grid-template-columns:200px 1fr 140px;gap:35px;align-items:start;padding:27px 0;border-bottom:1px solid var(--rule)}.series-panel h3{font-family:var(--serif);font-size:21px;line-height:1.4;letter-spacing:-.025em}.series-panel p{font-size:13px;line-height:1.9;color:var(--muted)}.series-panel .text-link{font-size:11px;align-self:start;justify-self:end;white-space:nowrap;gap:12px}.series-nojs{font-size:11px;margin-top:12px;color:var(--muted)}
+.reading-desk{padding:13px 0 54px}.desk-head{display:flex;justify-content:space-between;gap:25px;align-items:center;margin:23px 0 23px}.desk-head h2{font-family:var(--serif);font-size:37px;line-height:1.25;letter-spacing:-.04em}.filters{display:flex;flex-wrap:wrap;gap:6px}.filter{min-height:44px;border:1px solid transparent;background:none;padding:8px 13px;font-size:11px}.filter[aria-pressed=true]{border-color:var(--muted);background:var(--olive)}.filter:hover{text-decoration:underline}.filter-count{font:10px/1.6 var(--mono);color:var(--muted);margin-bottom:15px}.desk-list{border-top:1px solid var(--ink)}.desk-item{border-bottom:1px solid var(--rule);padding:24px 0}.desk-item-head{display:grid;grid-template-columns:135px 1fr 60px;gap:30px;align-items:start}.desk-item h3{font-family:var(--serif);font-size:25px;line-height:1.35;letter-spacing:-.03em}.desk-item p{font-size:13px;line-height:1.8;color:var(--muted);margin-top:9px;max-width:650px}.desk-item .duration{font:10px/1.7 var(--mono);color:var(--muted);text-align:right;padding-top:3px}.desk-item details{margin:8px 90px 0 165px;max-width:680px}.desk-item summary{list-style:none;cursor:pointer;font-size:11px;font-weight:700;min-height:44px;padding:11px 0;display:inline-flex;align-items:center;gap:16px}.desk-item summary::-webkit-details-marker{display:none}.desk-item summary::after{content:'+';font-size:18px}.desk-item details[open] summary::after{content:'−'}.desk-item details>div{border-left:2px solid var(--red);padding:0 0 0 20px;margin-top:8px}.desk-item details p{font-family:var(--serif);font-size:16px;line-height:1.9}.desk-item details p+p{margin-top:15px}.desk-item .note-label{font:10px/1.7 var(--mono);margin-top:17px;color:var(--muted)}
+.research{border-top:2px solid var(--ink);padding-top:24px}.article-topline{display:flex;justify-content:space-between;gap:30px}.article-header{max-width:870px;margin:47px auto 0}.article-header h2{font-family:var(--serif);font-size:clamp(42px,5.4vw,73px);line-height:1.17;letter-spacing:-.052em;margin:14px 0 26px}.article-header h2 em{color:var(--red);font-weight:400}.article-deck{font-family:var(--serif);font-size:24px;line-height:1.65;color:var(--muted);max-width:760px;margin-bottom:28px}.byline{display:flex;gap:15px;align-items:center;border-top:1px solid var(--rule);padding:20px 0 24px}.byline-mark{width:44px;height:44px;border:1px solid var(--muted);border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:17px;flex-shrink:0}.byline strong{font-size:11px;display:block;margin-bottom:3px}.byline p{font-size:10px;color:var(--muted)}.disclosure{max-width:870px;margin:0 auto 46px;background:var(--olive);padding:22px 25px;display:grid;grid-template-columns:190px 1fr;gap:30px}.disclosure h3{font-size:12px;font-weight:700;line-height:1.7}.disclosure .pending{font:9px/1.6 var(--mono);margin-top:8px;color:var(--muted);display:block}.disclosure p{font-size:12px;line-height:1.85}.article-layout{display:grid;grid-template-columns:150px minmax(0,660px) 180px;justify-content:center;gap:38px}.toc{position:sticky;top:28px;align-self:start}.toc .eyebrow{margin-bottom:12px}.toc a{display:flex;align-items:center;min-height:44px;font-size:10px;line-height:1.6;text-decoration:none;border-top:1px solid var(--rule);padding:10px 0;color:var(--muted);gap:9px}.toc a[aria-current=location]{color:var(--red);font-weight:700}.toc a[aria-current=location]::before{content:'';width:5px;height:5px;background:var(--red);border-radius:50%;flex-shrink:0}.toc .toc-note{font:9px/1.8 var(--mono);color:var(--muted);padding-top:20px}.article-body{max-width:62ch;min-width:0;font-family:var(--serif);font-size:18px;line-height:1.95}.chapter{position:relative}.article-body p{margin-bottom:25px}.article-body .opening::first-letter{float:left;font-size:74px;line-height:.95;margin:11px 10px 0 0;color:var(--red)}.article-body h3{font-size:30px;line-height:1.35;letter-spacing:-.03em;margin:44px 0 21px}.article-body .chapter:first-child h3{margin-top:0}.article-body h4{font-size:20px}.sidenote{position:absolute;left:calc(100% + 38px);top:35px;width:180px;font-family:var(--sans);font-size:11px;line-height:1.85;border-top:2px solid var(--red);padding-top:10px}.sidenote summary{list-style:none;cursor:pointer;min-height:44px;color:var(--red);font-size:11px;font-weight:700;line-height:1.7;display:flex;align-items:center;justify-content:space-between;gap:12px}.sidenote summary::-webkit-details-marker{display:none}.sidenote summary::after{content:'+';font-size:18px}.sidenote[open] summary::after{content:'−'}.sidenote p{font-family:var(--sans);font-size:11px;margin:9px 0 0;color:var(--muted);line-height:1.85}.sidenote .note-prefix{font:9px/1.8 var(--mono);color:var(--muted);margin-bottom:4px}.pullquote{font-family:var(--serif);font-size:29px;line-height:1.5;font-style:italic;letter-spacing:-.035em;color:var(--red);padding:28px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin:30px 0 38px}.article-body .question-list{margin:0 0 30px;padding:0;list-style:none;counter-reset:questions}.question-list li{padding:19px 0 19px 43px;border-top:1px solid var(--rule);position:relative;font-size:17px;line-height:1.85;counter-increment:questions}.question-list li::before{content:'0' counter(questions);position:absolute;left:0;top:21px;font-family:var(--mono);font-size:11px;color:var(--red)}.question-list strong{font-weight:500;display:block;margin-bottom:5px}.article-body .advice{font-family:var(--sans);font-size:12px;line-height:1.9;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:24px 0;margin-top:31px}.advice h4{font-size:12px;font-family:var(--sans);font-weight:700;margin-bottom:9px}.advice p{font-family:var(--sans);font-size:12px;color:var(--muted);margin:0}.article-finish{display:flex;justify-content:space-between;align-items:center;gap:20px;margin:26px 0 0;font-family:var(--sans);font-size:11px}.article-finish span:last-child{font-family:var(--serif);color:var(--red);font-size:32px}.reading-meter{position:fixed;top:0;left:0;width:100%;height:4px;z-index:45;background:transparent;pointer-events:none;opacity:0}.reading-meter>span{display:block;height:100%;width:100%;background:var(--red);transform:scaleX(0);transform-origin:left}
+.calculator{font-family:var(--sans);margin:32px 0 37px;border:1px solid var(--muted);background:var(--field)}.calculator-head{padding:24px 25px 20px;border-bottom:1px solid var(--rule)}.calculator-head .fig-number{font:10px/1.7 var(--mono);color:var(--red);letter-spacing:.05em;margin-bottom:11px}.calculator-head h4{font-family:var(--mono);font-size:22px;line-height:1.45;letter-spacing:-.045em}.calculator-head p{font-size:11px;line-height:1.8;color:var(--muted);margin:12px 0 0}.model-controls{padding:20px 25px 2px;display:grid;grid-template-columns:1fr 1fr;gap:20px 28px}.control-label{font-size:11px;font-weight:700;display:block;line-height:1.7;margin-bottom:7px}.number-wrap{display:flex;align-items:center;min-height:46px;border:1px solid var(--muted);padding:0 12px;background:var(--paper);gap:7px}.number-wrap>span{font:11px var(--mono);color:var(--muted)}.number-wrap input{min-width:0;width:100%;height:44px;border:0;background:none;font-family:var(--mono);font-size:14px;padding:0 0 0 3px;border-radius:0}.number-wrap input:focus-visible{outline-offset:2px}.range-wrap{display:flex;align-items:center;height:44px;padding:0 2px}.range-wrap input{width:100%;min-width:0;height:44px;cursor:pointer;accent-color:var(--red);margin:0}.control-range{display:flex;justify-content:space-between;font:9px/1.6 var(--mono);color:var(--muted);margin-top:-3px}.control-error{grid-column:1/-1;color:var(--red);font-size:11px;line-height:1.75;min-height:0;margin:0!important}.control-error:empty{display:none}.model-actions{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:15px 25px 21px;border-bottom:1px solid var(--rule)}.model-actions>p{font-size:10px;line-height:1.8;color:var(--muted);margin:0;max-width:320px}.reset{font-size:10px;line-height:1.6;min-height:44px;border:1px solid var(--muted);background:none;padding:8px 13px;white-space:nowrap}.model-results{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding:24px 25px 18px}.result-label{display:block;font-size:10px;line-height:1.7;color:var(--muted);margin-bottom:6px}.result-value{font-family:var(--serif);font-size:33px;line-height:1.2;letter-spacing:-.045em;font-variant-numeric:tabular-nums;white-space:nowrap}.result-value.red{color:var(--red)}.gap-result{margin:0 25px 20px;padding:15px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);font-size:11px;line-height:1.85}.gap-result strong{font-weight:700}.article-body .gap-result p{margin:0;font-family:var(--sans);font-size:11px}.gap-result .gap-help{font-size:10px;margin-top:5px;color:var(--muted)}.chart-controls{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:0 25px}.chart-controls>span{font:9px/1.6 var(--mono);color:var(--muted)}.view-toggle{display:flex;border:1px solid var(--muted)}.view-toggle button{min-height:44px;min-width:64px;padding:8px 13px;border:0;background:none;font-size:10px;font-weight:600}.view-toggle button[aria-pressed=true]{background:var(--ink);color:var(--paper)}.chart-view{padding:14px 15px 0}.chart-view svg{width:100%;height:320px;overflow:visible}.chart-view svg text{font-family:var(--mono)}.chart-placeholder{font-size:12px;color:var(--muted);padding:20px 10px}.table-view{margin:22px 25px 0;max-height:450px;overflow:auto;overscroll-behavior:contain}.data-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:10px;line-height:1.7;font-variant-numeric:tabular-nums}.data-table caption{text-align:left;font-family:var(--sans);font-size:10px;font-weight:600;padding-bottom:12px;color:var(--muted)}.data-table th,.data-table td{border-top:1px solid var(--rule);padding:10px 7px;text-align:right;white-space:nowrap}.data-table th:first-child,.data-table td:first-child{text-align:left;padding-left:0}.data-table thead th{font-family:var(--sans);font-size:9px;font-weight:700;background:var(--field);position:sticky;top:0}.data-table tbody th{font-weight:400}.source-note{margin:18px 25px 0;border-top:1px solid var(--rule);padding:16px 0 20px;font:9px/1.9 var(--mono);color:var(--muted)}.source-note a{font:inherit;display:inline-flex;align-items:center;min-height:44px}.source-note p{font:inherit!important;margin:0!important}.model-method{font-family:var(--sans);margin:0 25px 23px;border-top:1px solid var(--rule)}.model-method summary{font-size:11px;font-weight:700;min-height:44px;cursor:pointer;padding:12px 0}.model-method p{font-family:var(--sans);font-size:11px;line-height:1.9;color:var(--muted);margin:8px 0 14px}.formula{display:block;font:10px/1.9 var(--mono);white-space:normal;overflow-wrap:anywhere;background:var(--olive);padding:12px 13px;margin:12px 0}.model-announcement{font-size:11px;color:var(--muted)}.no-js-model{font-size:12px;line-height:1.8;padding:0 25px 22px}
+.about-newsletter{border-top:1px solid var(--ink);margin-top:72px;padding:47px 0 48px;display:grid;grid-template-columns:1fr 1.3fr;gap:85px}.about h2{font-family:var(--serif);font-size:31px;line-height:1.3;letter-spacing:-.035em;margin:14px 0 17px}.about p{font-size:13px;line-height:1.9;color:var(--muted);max-width:370px}.about .bio-note{font-family:var(--mono);font-size:9px;line-height:1.85;margin-top:17px}.newsletter h2{font-family:var(--serif);font-size:43px;line-height:1.25;letter-spacing:-.045em;margin:13px 0 17px}.newsletter>p{font-size:13px;line-height:1.85;color:var(--muted);max-width:450px}.newsletter label{font-size:11px;font-weight:700;display:block;margin:25px 0 9px}.email-row{display:flex;border-bottom:1px solid var(--ink);gap:8px;align-items:start}.email-row input{width:100%;min-width:0;height:50px;border:0;background:none;font-size:14px;border-radius:0;padding:12px 0;color:var(--ink)}.email-row input::placeholder{color:var(--muted);opacity:1}.email-row button{background:var(--ink);color:var(--paper);border:0;min-height:48px;font-size:11px;padding:11px 17px;white-space:nowrap;margin-bottom:8px}.newsletter .form-note{font-size:10px;line-height:1.8;margin-top:12px;color:var(--muted)}.newsletter .form-status{font-size:11px;line-height:1.85;min-height:22px;color:var(--red);margin-top:13px}.footer{border-top:2px solid var(--ink);padding:23px 0 27px;display:flex;justify-content:space-between;align-items:center;gap:25px}.footer-brand{font-family:var(--serif);font-size:20px;letter-spacing:-.04em}.footer>p{font-size:10px;line-height:1.75;color:var(--muted)}.footer>a{font-size:10px;text-decoration:none;min-height:44px;display:flex;align-items:center;gap:12px}.design-spec{border-top:1px solid var(--rule);padding-bottom:25px;font-size:11px}.design-spec>summary{font-size:10px;line-height:1.8;color:var(--muted);min-height:44px;cursor:pointer;padding:12px 0}.design-spec-body{padding:16px 0}.design-spec-body p{font-size:11px;line-height:1.9;max-width:850px;margin-bottom:14px}.motion-table-wrap{overflow:auto}.motion-table{border-collapse:collapse;width:100%;min-width:740px;font-size:10px;line-height:1.8;text-align:left}.motion-table th,.motion-table td{padding:11px 10px;border-top:1px solid var(--rule);vertical-align:top}.motion-table th{font-weight:700}.download-spec{font-size:10px;background:none;border:1px solid var(--muted);min-height:44px;padding:10px 15px;margin-top:20px}
+dialog{margin:8vh auto auto;border:1px solid var(--muted);padding:0;background:var(--paper);color:var(--ink);width:min(650px,calc(100% - 32px));max-height:82dvh;overflow:auto;overscroll-behavior:contain}dialog::backdrop{background:rgba(15,20,13,.6)}.dialog-inner{padding:28px}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:24px}.dialog-head h2{font-family:var(--serif);font-size:31px;line-height:1.3;letter-spacing:-.04em}.dialog-close{width:44px;height:44px;border:1px solid var(--muted);background:none;font-size:23px;flex-shrink:0}.modal-nav{display:grid;grid-template-columns:1fr 1fr;gap:0 30px;border-top:1px solid var(--rule)}.modal-nav a{font-family:var(--serif);font-size:21px;line-height:1.5;min-height:58px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between;text-decoration:none;gap:15px}.modal-nav a span{font-family:var(--mono);font-size:9px;color:var(--muted)}.menu-foot{font-size:11px;color:var(--muted);line-height:1.9;margin-top:25px}.search-label{font-size:11px;font-weight:700;display:block;margin-bottom:10px}.search-field{width:100%;min-height:50px;border:1px solid var(--muted);background:var(--field);border-radius:0;padding:12px 13px;font-size:16px}.search-field::placeholder{color:var(--muted);opacity:1}.search-help{font-size:10px;line-height:1.8;color:var(--muted);margin:10px 0 15px}.search-count{font:10px/1.7 var(--mono);color:var(--muted);margin-bottom:12px}.search-results{list-style:none;padding:0;margin:0}.search-results li{border-top:1px solid var(--rule)}.search-results a{display:block;text-decoration:none;min-height:60px;padding:15px 0}.search-results strong{font-family:var(--serif);font-size:20px;line-height:1.5;font-weight:400;display:block}.search-results span{font-size:10px;color:var(--muted);line-height:1.8;display:block;margin-top:5px}.search-results .empty{font-size:13px;line-height:1.8;padding:18px 0}.bottom-nav{display:none}
+@media(max-width:1100px){.wrap{padding:0 32px}.hero{gap:35px}.hero h1{font-size:59px}.hero-book{width:250px}.cover-scene{min-height:385px;padding:20px}.cover-annotation{font-size:12px;max-width:85px;right:-10px}.hero-book .book-display{font-size:75px}.book-track{gap:32px}.book-object{flex-basis:210px;padding:23px 23px 21px;min-height:293px}.book-stage{padding:28px 20px 16px}.book-object .book-title{font-size:24px}.series-panel{grid-template-columns:170px 1fr 125px;gap:25px}.article-layout{grid-template-columns:115px minmax(0,1fr) 150px;gap:25px}.sidenote{left:calc(100% + 25px);width:150px}.article-header,.disclosure{max-width:800px}.about-newsletter{gap:45px}.desk-head{align-items:start;flex-direction:column;gap:17px}.desk-item-head{grid-template-columns:110px 1fr 50px;gap:20px}.desk-item details{margin-left:130px;margin-right:70px}.model-controls{gap:18px 20px}.result-value{font-size:29px}.chart-controls{gap:12px}.chart-controls>span{max-width:145px}}
+@media(max-width:950px){.article-layout{grid-template-columns:120px minmax(0,1fr);gap:30px}.sidenote{position:static;width:auto;background:var(--olive);border-top:0;border-left:2px solid var(--red);padding:9px 18px 12px;margin:23px 0 28px;font-size:12px}.sidenote summary{font-size:12px;min-height:44px}.sidenote p{font-size:12px;line-height:1.85;margin:6px 0}.sidenote .note-prefix{font-size:9px}.hero h1{font-size:52px}.hero{gap:25px}.hero-book{width:225px;padding:25px}.hero-book h2{font-size:23px}.hero-book .book-display{font-size:66px}.cover-annotation{display:none}.cover-scene{min-height:350px}.hero-description{font-size:14px}.series-panel{grid-template-columns:170px 1fr;gap:20px}.series-panel .text-link{grid-column:2;justify-self:start}.series-head-controls{gap:12px}.section-heading h2{font-size:35px}.book-object{flex-basis:200px;min-height:285px}.newsletter h2{font-size:37px}}
+@media(max-width:760px){.wrap{padding:0 22px}.prototype-strip{font-size:8px;line-height:1.8;padding:7px 0}.prototype-strip .wrap>span:first-child{display:none}.prototype-strip .wrap{justify-content:center}.header-top{padding:12px 0 4px}.direction{font-size:8px;letter-spacing:.11em}.header-actions{gap:12px}.header-actions>a{display:none}.header-actions .quiet-button{font-size:0;padding:8px}.header-actions .quiet-button svg{width:19px;height:19px}.header-actions .top-theme{display:none}.js .mobile-menu-open{display:flex;font-size:11px}.masthead{font-size:clamp(31px,7.8vw,55px);line-height:1.25;letter-spacing:-.065em;white-space:normal;padding:9px 0 17px}.desktop-nav{display:grid;grid-template-columns:1fr 1fr;gap:0 20px;padding:10px 0}.desktop-nav a{font-size:12px;min-height:46px;border-bottom:1px solid var(--rule)}.js .desktop-nav{display:none}.hero{display:block;padding:34px 0 28px}.hero h1{font-size:clamp(43px,10.9vw,64px);letter-spacing:-.052em;line-height:1.16;margin:16px 0 20px;max-width:580px}.hero-description{font-size:14px;line-height:1.9;max-width:430px;margin-bottom:17px}.hero .eyebrow{font-size:9px}.hero-actions{gap:26px}.hero-actions .text-link{font-size:11px}.hero-actions>a:last-child{font-size:10px}.cover-scene{min-height:340px;max-width:440px;margin:23px auto 0;padding:25px}.cover-scene::before{inset:7% 0 6%}.cover-scene::after{font-size:8px;bottom:0}.hero-book{width:226px;min-height:285px;aspect-ratio:.77;padding:25px 27px 19px}.hero-book .book-display{font-size:65px}.hero-book .book-display::after{font-size:19px}.hero-book h2{font-size:23px}.hero-book .eyebrow{font-size:8px}.hero-book .cover-bottom{font-size:8px;margin-top:15px;padding-top:9px}.editorial-promise{display:block;padding:23px 0}.editorial-promise>.eyebrow{font-size:9px;margin-bottom:12px}.editorial-promise>p:last-child{font-size:18px;line-height:1.75}.series{padding:37px 0 34px}.section-label{font-size:9px;gap:10px}.section-heading{display:block;margin:19px 0 24px}.section-heading h2{font-size:33px;line-height:1.25}.section-heading .meta{font-size:11px;margin-top:12px;max-width:350px}.series-head-controls{justify-content:space-between;margin-top:21px}.book-index{gap:7px}.book-stage{padding:17px 0 8px}.book-track{justify-content:flex-start;gap:31px;padding:23px 30px 30px;scroll-padding:35px}.book-object{flex:0 0 235px;min-height:298px;max-width:235px;padding:25px 26px 20px}.book-object .book-title{font-size:25px}.book-object .spine-number{font-size:60px}.series-panel{display:block;padding:23px 0}.series-panel h3{font-size:23px;margin-bottom:13px}.series-panel p{font-size:12px;line-height:1.9}.series-panel .text-link{margin-top:13px;font-size:10px}.reading-desk{padding:11px 0 37px}.desk-head{gap:18px;margin:18px 0 15px}.desk-head h2{font-size:32px}.filters{gap:3px}.filter{font-size:10px;padding:8px 10px}.filter-count{font-size:9px;margin-bottom:12px}.desk-item{padding:21px 0}.desk-item-head{grid-template-columns:1fr 40px;gap:11px}.desk-item-head>.eyebrow{grid-column:1/-1;font-size:9px}.desk-item h3{font-size:24px;line-height:1.35}.desk-item p{font-size:12px;line-height:1.85;margin-top:10px}.desk-item .duration{font-size:9px}.desk-item details{margin:7px 0 0}.desk-item summary{font-size:10px}.desk-item details>div{padding-left:16px}.desk-item details p{font-size:17px;line-height:1.85}.desk-item .note-label{font-size:9px}.research{padding-top:18px}.article-topline .eyebrow{font-size:8px;letter-spacing:.09em}.article-topline>p:last-child{text-align:right;max-width:110px}.article-header{margin:32px 0 0}.article-header>.eyebrow{font-size:9px}.article-header h2{font-size:42px;line-height:1.2;letter-spacing:-.055em;margin:13px 0 22px}.article-deck{font-size:20px;line-height:1.75;margin-bottom:25px}.byline{gap:12px;padding:17px 0 20px}.byline strong{font-size:10px;line-height:1.7}.byline p{font-size:9px;line-height:1.7}.byline-mark{width:40px;height:40px;font-size:16px}.disclosure{display:block;padding:19px 20px;margin:0 0 30px}.disclosure h3{font-size:12px}.disclosure .pending{display:inline;margin-left:8px;font-size:8px}.disclosure p{font-size:11px;line-height:1.85;margin-top:9px}.article-layout{display:block}.toc{position:static;display:flex;flex-wrap:wrap;gap:0 18px;border-bottom:1px solid var(--rule);padding-bottom:15px;margin-bottom:28px}.toc>.eyebrow{flex-basis:100%;font-size:9px;margin-bottom:3px}.toc a{border:0;font-size:10px;min-height:44px;padding:9px 0;gap:6px}.toc .toc-note{display:none}.article-body{font-size:18px;line-height:1.9;max-width:none}.article-body p{margin-bottom:23px}.article-body .opening::first-letter{font-size:66px;margin:10px 9px 0 0}.article-body h3{font-size:29px;line-height:1.35;margin:36px 0 18px}.sidenote{padding:8px 16px 12px;margin:23px 0 25px}.pullquote{font-size:26px;line-height:1.55;padding:25px 0;margin:28px 0 31px}.article-body .question-list{margin-bottom:25px}.question-list li{font-size:17px;padding:18px 0 18px 35px}.question-list li::before{font-size:10px;top:20px}.article-body .advice{padding:22px 0;margin-top:27px}.advice p{font-size:11px;line-height:1.9}.article-finish{font-size:10px;line-height:1.8;margin-top:21px}.article-finish span:last-child{font-size:28px}.calculator{margin:27px 0 30px}.calculator-head{padding:20px 18px 18px}.calculator-head .fig-number{font-size:9px}.calculator-head h4{font-size:20px;line-height:1.5}.calculator-head p{font-size:10px;line-height:1.9;margin-top:11px}.model-controls{padding:19px 18px 0;gap:17px 14px}.control-label{font-size:10px;line-height:1.7;min-height:34px;margin-bottom:5px}.number-wrap{padding:0 9px;gap:4px}.number-wrap input{font-size:13px;padding-left:0}.number-wrap>span{font-size:10px}.control-range{font-size:8px;line-height:1.8}.control-error{font-size:10px}.model-actions{padding:15px 18px 18px;align-items:start;gap:12px}.model-actions>p{font-size:9px;line-height:1.8;max-width:170px}.reset{font-size:9px;padding:8px 11px;min-width:84px}.model-results{padding:21px 18px 17px;gap:14px}.result-label{font-size:9px;line-height:1.8;min-height:32px;margin-bottom:5px}.result-value{font-size:27px;letter-spacing:-.05em}.gap-result{margin:0 18px 17px;padding:13px 0}.article-body .gap-result p{font-size:10px;line-height:1.85}.gap-result .gap-help{font-size:9px!important}.chart-controls{padding:0 18px;gap:8px}.chart-controls>span{font-size:8px;max-width:100px;line-height:1.7}.view-toggle button{min-width:58px;padding:8px 11px;font-size:10px}.chart-view{padding:10px 11px 0}.chart-view svg{height:320px}.table-view{margin:19px 18px 0;max-height:450px}.data-table{display:block;font-size:10px}.data-table caption{display:block;font-size:9px;line-height:1.9;padding-bottom:13px}.data-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.data-table tbody{display:grid;gap:13px}.data-table tr{display:grid;grid-template-columns:1fr;background:var(--paper);border:1px solid var(--muted);padding:12px 13px}.data-table th,.data-table td{display:flex;justify-content:space-between;align-items:baseline;gap:10px;white-space:normal;text-align:right;border:0;padding:6px 0}.data-table tbody th{font-weight:700;border-bottom:1px solid var(--rule);margin-bottom:4px;padding-bottom:10px}.data-table tbody th::before,.data-table td::before{content:attr(data-label);font-family:var(--sans);font-size:9px;text-align:left;font-weight:400;color:var(--muted)}.source-note{margin:16px 18px 0;padding:14px 0 18px;font-size:8px;line-height:2}.model-method{margin:0 18px 20px}.model-method summary{font-size:10px}.model-method p{font-size:10px;line-height:1.9}.formula{font-size:9px;line-height:1.9;padding:11px}.no-js-model{padding:0 18px 20px;font-size:11px}.about-newsletter{display:block;margin-top:46px;padding:33px 0}.about h2{font-size:29px;margin:12px 0 14px}.about p{font-size:13px;max-width:500px}.about .bio-note{font-size:9px}.newsletter{border-top:1px solid var(--rule);margin-top:28px;padding-top:28px}.newsletter h2{font-size:35px;line-height:1.3;margin:12px 0 14px}.newsletter>p{font-size:13px}.newsletter label{font-size:10px;margin-top:22px}.email-row input{font-size:13px}.email-row button{font-size:10px;padding:10px 14px}.newsletter .form-note{font-size:9px}.newsletter .form-status{font-size:10px}.footer{flex-wrap:wrap;gap:6px 20px;padding:20px 0}.footer-brand{font-size:18px}.footer>p{order:3;flex-basis:100%;font-size:9px}.footer>a{margin-left:auto;font-size:9px}.design-spec>summary{font-size:9px}.design-spec{padding-bottom:20px}.design-spec-body p{font-size:10px}.js body{padding-bottom:77px}.js .bottom-nav{display:grid;grid-template-columns:repeat(4,1fr);position:fixed;bottom:0;left:0;right:0;z-index:40;background:var(--paper);border-top:1px solid var(--muted);padding:5px 11px max(5px,env(safe-area-inset-bottom));gap:4px}.bottom-nav button,.bottom-nav a{min-height:54px;min-width:44px;border:0;background:none;color:var(--ink);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;font-size:9px;line-height:1.6;text-decoration:none}.bottom-nav svg{width:18px;height:18px}.bottom-nav>a{background:var(--olive);color:var(--ink)}.dialog-inner{padding:22px}.dialog-head{margin-bottom:22px}.dialog-head h2{font-size:27px}.modal-nav{gap:0 22px}.modal-nav a{font-size:20px;min-height:58px}.menu-foot{font-size:10px}.search-results strong{font-size:19px}.search-results span{font-size:9px}.search-help{font-size:9px}.search-count{font-size:9px}}
+@media(max-width:360px){.wrap{padding:0 18px}.masthead{font-size:28px}.hero h1{font-size:39px}.hero-actions{gap:20px}.hero-actions .text-link{font-size:10px;gap:17px}.hero-actions>a:last-child{font-size:9px}.article-header h2{font-size:38px}.disclosure .pending{display:block;margin:5px 0 0}.model-controls{gap:17px 10px}.number-wrap{padding:0 7px;gap:3px}.number-wrap input{font-size:12px}.control-label{font-size:9px}.result-value{font-size:23px}.model-actions{flex-wrap:wrap}.model-actions>p{max-width:145px}.chart-controls{align-items:start;gap:7px}.chart-controls>span{max-width:86px}.view-toggle button{min-width:54px;padding:8px 9px}.book-object{flex-basis:218px;max-width:218px;min-height:290px}.book-track{padding-left:24px;padding-right:24px}.book-object .book-title{font-size:24px}.section-heading h2{font-size:31px}.filter{padding:8px 8px}.newsletter h2{font-size:32px}.email-row button{padding:10px 11px}.footer-brand{font-size:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.arrow,.book-object,.book-object:hover,.book-object:focus-visible{transform:none!important}.reading-meter{display:none!important}}
+@media print{.prototype-strip,.header-actions,.desktop-nav,.hero,.editorial-promise,.series,.reading-desk,.toc,.about-newsletter,.bottom-nav,.design-spec,dialog,.reading-meter,.footer,.model-controls,.model-actions,.chart-controls,.sidenote{display:none!important}.wrap{padding:0;max-width:none}.masthead{font-size:28pt}.article-layout{display:block}.article-body{max-width:none;font-size:11pt}.article-header h2{font-size:32pt}.article-deck{font-size:14pt}.research{border:0}.article-header{margin-top:20pt}.disclosure{break-inside:avoid}.calculator{break-inside:avoid}.article-body h3{font-size:19pt}body{background:#fff;color:#000;padding:0!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="reading-meter" id="reading-meter" role="progressbar" aria-label="Progress through the research note" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-hidden="true"><span></span></div>
+<div class="prototype-strip"><div class="wrap"><span>ONE AUTHOR. AN OPEN NOTEBOOK.</span><span>Design prototype · hypothetical examples · 23 October 2026</span></div></div>
+<header class="wrap" id="home">
+  <div class="header-top"><p class="direction">The Margin / v2<br>Finance, slowly.</p><div class="header-actions"><a href="#newsletter">Letters from the Review <span class="arrow" aria-hidden="true">↗</span></a><button type="button" class="quiet-button" data-open-search disabled aria-haspopup="dialog" aria-label="Search the publication"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.7"/><path d="m15.5 15.5 5 5"/></svg>Search</button><button type="button" class="quiet-button top-theme" data-theme-toggle disabled aria-label="Switch to dark theme"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none"/></svg><span data-theme-text>Theme</span></button><button type="button" class="quiet-button mobile-menu-open" data-open-menu disabled aria-haspopup="dialog" aria-controls="menu-dialog" aria-expanded="false">Menu <span aria-hidden="true">+</span></button></div></div>
+  <a href="#home" class="masthead">The Intrinsic <em>Review.</em></a>
+  <nav class="desktop-nav" aria-label="Main navigation"><a href="#home">Home</a><a href="#start-here">Start Here</a><a href="#learn">Learn</a><a href="#investing">Investing</a><a href="#portfolio">Portfolio</a><a href="#research">Research</a><a href="#markets">Markets</a><a href="#about">About</a></nav>
+</header>
+<main class="wrap" id="main">
+  <section class="hero" aria-labelledby="hero-title"><div><p class="eyebrow" data-intro><span class="dot" aria-hidden="true"></span>Independent finance education</p><h1 id="hero-title" data-intro>Small numbers.<br><em>Long shadows.</em></h1><p class="hero-description" data-intro>Some ideas only become clear when you give them time. Explore compounding, the quiet weight of fees, and the questions behind the numbers.</p><div class="hero-actions" data-intro><a class="text-link" href="#research">Open the research notebook <span class="arrow" aria-hidden="true">↗</span></a><a href="#start-here">New here? Start slowly.</a></div></div><div class="cover-scene" aria-hidden="true" data-intro><div class="hero-book"><p class="eyebrow">The learning series / 01</p><div class="book-display">40</div><h2>A study in<br>compounding.</h2><div class="cover-bottom"><span>ONE IDEA.<br>ROOM TO EXPLORE.</span><span>IR<br>01</span></div></div><span class="cover-annotation">What happens<br>in between?</span></div></section>
+  <div class="editorial-promise" data-reveal><p class="eyebrow red">A publication for<br>better questions.</p><p>Understand the mechanism. Notice the assumptions. Keep the uncertainty in view. That is where a useful financial education begins.</p></div>
+
+  <section class="series" id="start-here" aria-labelledby="series-title" data-reveal>
+    <p class="section-label eyebrow red">Start Here / The learning series</p>
+    <div class="section-heading"><div><h2 id="series-title">A small shelf.<br>A solid beginning.</h2><p class="meta">Choose a volume. Each opens a different way of looking at the same financial world.</p></div><div class="series-head-controls"><span class="series-count" id="series-count">01 / 03</span><div class="book-index" role="group" aria-label="Choose a learning volume"><button type="button" data-book-index="0" aria-pressed="true" aria-controls="series-panel-0">01</button><button type="button" data-book-index="1" aria-pressed="false" aria-controls="series-panel-1">02</button><button type="button" data-book-index="2" aria-pressed="false" aria-controls="series-panel-2">03</button></div></div></div>
+    <div class="book-stage"><div class="book-track" id="book-track" aria-label="Learning volumes">
+      <button type="button" class="book-object" data-book="0" aria-pressed="true" aria-controls="series-panel-0"><span class="eyebrow">The Intrinsic Review</span><span class="spine-number" aria-hidden="true">01</span><span class="book-title">Time changes<br>the arithmetic.</span><span class="book-bottom"><span>COMPOUNDING &amp; COSTS</span><span aria-hidden="true">↗</span></span></button>
+      <button type="button" class="book-object" data-book="1" aria-pressed="false" aria-controls="series-panel-1"><span class="eyebrow">The Intrinsic Review</span><span class="spine-number" aria-hidden="true">02</span><span class="book-title">Reading<br>the business.</span><span class="book-bottom"><span>REVENUE, PROFIT &amp; CASH</span><span aria-hidden="true">↗</span></span></button>
+      <button type="button" class="book-object" data-book="2" aria-pressed="false" aria-controls="series-panel-2"><span class="eyebrow">The Intrinsic Review</span><span class="spine-number" aria-hidden="true">03</span><span class="book-title">Different names.<br>Shared risks.</span><span class="book-bottom"><span>PORTFOLIO FOUNDATIONS</span><span aria-hidden="true">↗</span></span></button>
+    </div></div>
+    <div id="series-panels">
+      <article class="series-panel" id="series-panel-0"><h3>01 / Time changes<br>the arithmetic.</h3><p>Compounding describes a repeated calculation: each period starts with the amount left by the previous one. That repetition makes both growth and deductions matter. A fee changes the balance available for every later calculation. Our worked note lets you vary the assumptions and inspect every year.</p><a href="#research" class="text-link">Read the note <span class="arrow" aria-hidden="true">↗</span></a></article>
+      <article class="series-panel" id="series-panel-1"><h3>02 / Reading<br>the business.</h3><p>Revenue records sales under an accounting policy. Profit takes expenses into account. Operating cash flow follows cash generated and used in operations. Those measures can move differently without any single number telling the whole story. Start with the timing of a sale and its payment.</p><a href="#business-note" class="text-link" data-open-note="business-note">Read the note <span class="arrow" aria-hidden="true">↗</span></a></article>
+      <article class="series-panel" id="series-panel-2"><h3>03 / Different names.<br>Shared risks.</h3><p>A portfolio can contain many holdings that depend on the same customers, economic forces or underlying companies. The useful question is not only “how many?” but “what do they share?” Diversification is a way to examine concentration, not a promise that losses disappear.</p><a href="#portfolio" class="text-link" data-open-note="portfolio">Read the note <span class="arrow" aria-hidden="true">↗</span></a></article>
+    </div><noscript><p class="series-nojs">All three introductions are shown. Follow each “Read the note” link to continue.</p></noscript>
+  </section>
+
+  <section class="reading-desk" id="learn" aria-labelledby="desk-title" data-reveal><p class="section-label eyebrow red">Learn / The reading desk</p><div class="desk-head"><h2 id="desk-title">Follow a question.</h2><div class="filters" role="group" aria-label="Filter educational notes"><button type="button" class="filter" data-filter="all" aria-pressed="true">All notes</button><button type="button" class="filter" data-filter="learn" aria-pressed="false">Learn</button><button type="button" class="filter" data-filter="investing" aria-pressed="false">Investing</button><button type="button" class="filter" data-filter="portfolio" aria-pressed="false">Portfolio</button><button type="button" class="filter" data-filter="markets" aria-pressed="false">Markets</button></div></div><p class="filter-count" id="filter-count" role="status">4 notes on the desk</p>
+    <div class="desk-list">
+      <article class="desk-item" id="business-note" data-category="learn" data-searchable data-search-title="The sale is recorded. The cash has not arrived." data-search-category="Learn · revenue, profit and cash"><div class="desk-item-head"><p class="eyebrow red">Learn / 01</p><div><h3>The sale is recorded.<br>The cash has not arrived.</h3><p>Why revenue, profit and operating cash flow answer different questions.</p></div><span class="duration">2 MIN</span></div><details><summary>Read the complete short note</summary><div><p>Imagine a workshop finishes a desk and sends an invoice. Under a simplified example where the sale is recognised at delivery, revenue appears before the customer pays. Recognition and payment happen at different times.</p><p>Profit takes relevant expenses into account. Some expenses also do not match the cash paid in that period. Operating cash flow helps show the cash generated or used by day-to-day activities. A difference between profit and cash calls for investigation; it is not, by itself, a verdict on the business.</p><p>Start with the period and accounting policies. Then examine receivables, inventory, payables and the reconciliation from profit to operating cash flow. One measure cannot replace the others.</p><p class="note-label">Conceptual teaching example · no real company or numerical dataset.</p></div></details></article>
+      <article class="desk-item" id="investing" data-category="investing" data-searchable data-search-title="A time horizon is a question about need." data-search-category="Investing · time horizons and uncertainty"><div class="desk-item-head"><p class="eyebrow red">Investing / 02</p><div><h3>A time horizon is a<br>question about need.</h3><p>Put the date beside the number before interpreting a return.</p></div><span class="duration">2 MIN</span></div><details><summary>Read the complete short note</summary><div><p>A time horizon describes the period before money may be needed. That need provides context for uncertainty. A change in price before the end of a period may matter differently if someone must withdraw during it.</p><p>Time also changes how figures should be read. A total return across several years and an annualised return are different descriptions. Neither is a promise about the next period, and a long horizon does not guarantee a positive outcome.</p><p>When comparing an illustration with a personal situation, first notice what is missing: withdrawals, timing, emergency needs and changes in circumstances. This note explains the idea; it does not choose an investment or a suitable horizon for anyone.</p><p class="note-label">Educational explanation · no portfolio recommendation.</p></div></details></article>
+      <article class="desk-item" id="portfolio" data-category="portfolio" data-searchable data-search-title="Many holdings can share one risk." data-search-category="Portfolio · diversification and overlapping holdings"><div class="desk-item-head"><p class="eyebrow red">Portfolio / 03</p><div><h3>Many holdings can<br>share one risk.</h3><p>Count the exposures as well as the names.</p></div><span class="duration">2 MIN</span></div><details><summary>Read the complete short note</summary><div><p>A portfolio is a collection of holdings. Different labels do not necessarily mean different exposures. Two funds may own some of the same companies, while businesses in different sectors may depend on a common source of demand.</p><p>Diversification examines how risks are spread. Looking through to underlying holdings, regions, sectors, currencies and economic drivers can reveal concentrations that a simple count misses.</p><p>There is no universal number of holdings that makes a portfolio “safe”. Relationships can change, broad markets can decline together, and diversification cannot guarantee against loss. The useful habit is to ask what each holding adds and what it repeats.</p><p class="note-label">Conceptual teaching note · no recommended allocation or fund.</p></div></details></article>
+      <article class="desk-item" id="markets" data-category="markets" data-searchable data-search-title="A price moved. The explanation is less certain." data-search-category="Markets · evidence, interpretation and uncertainty"><div class="desk-item-head"><p class="eyebrow red">Markets / 04</p><div><h3>A price moved.<br>The explanation is less certain.</h3><p>Separate an observation from the story placed around it.</p></div><span class="duration">2 MIN</span></div><details><summary>Read the complete short note</summary><div><p>A reported market move is an observation over a stated period. An explanation for that move is an interpretation. Several events can happen together, and their individual effects are not always identifiable from prices alone.</p><p>Read a market story in three passes. First, establish what changed and how it was measured. Second, identify the evidence offered for the proposed explanation. Third, list what the article leaves uncertain.</p><p>Useful reporting can acknowledge alternative explanations. A confident headline is not evidence of a predictable next move. This publication treats market stories as opportunities to understand mechanisms, without converting them into trading calls.</p><p class="note-label">Conceptual teaching note · no live market data or forecast.</p></div></details></article>
+    </div>
+  </section>
+
+  <article class="research" id="research" data-longread data-searchable data-search-title="The quiet weight of a small fee." data-search-category="Research · compounding and fee-drag calculator" aria-labelledby="article-title">
+    <div class="article-topline"><p class="eyebrow red">The research notebook / 001</p><p class="eyebrow">Hypothetical teaching model</p></div>
+    <header class="article-header" data-reveal><p class="eyebrow">Compounding / A study in repetition</p><h2 id="article-title">The quiet weight<br>of <em>a small fee.</em></h2><p class="article-deck">An annual percentage looks modest on the page. Repeated over time, it changes the amount left to compound. Let us make that mechanism visible.</p><div class="byline"><span class="byline-mark" aria-hidden="true">IR</span><div><strong>The founding author · name to be confirmed</strong><p>23 October 2026 · approximately 8 minutes, plus the interactive model</p></div></div></header>
+    <aside class="disclosure" aria-labelledby="conflicts-title" data-reveal><h3 id="conflicts-title">My holdings and conflicts<span class="pending">Author confirmation pending</span></h3><p>This article names no real investment, fund or security. The author’s actual holdings, compensation and affiliations have not been supplied. Those disclosures must be completed and dated before publication; no personal holding is represented here.</p></aside>
+    <div class="article-layout"><nav class="toc" aria-label="In this research note"><p class="eyebrow red">In the margin</p><a href="#mechanism" aria-current="location">01 &nbsp; The mechanism</a><a href="#model">02 &nbsp; Try the model</a><a href="#interpretation">03 &nbsp; Read the gap</a><a href="#questions">04 &nbsp; Better questions</a><a href="#limits">05 &nbsp; Keep the limits</a><p class="toc-note">Your place is marked<br>as you read.</p></nav>
+      <div class="article-body">
+        <section class="chapter" id="mechanism" data-chapter><p class="opening">Compounding is a process of repetition. A period ends, a new balance becomes the starting point, and the same calculation happens again. The mechanism is simple. Its consequences can be easy to underestimate.</p><p>Consider a purely hypothetical sum of money. We assign it a constant annual gross growth rate, then deduct an annual percentage fee. At the end of that year, the remaining amount becomes the base for the next. The fee affects that year’s balance and the base used in every later year.</p><details class="sidenote"><summary>01 / What “gross” means</summary><p>Here, “gross” means before the model’s annual percentage fee. It does not mean a guaranteed return. The model also excludes tax and inflation.</p></details><p>Our example deliberately holds the rate steady. Real investment returns do not arrive as a smooth, certain sequence. Fixing the rate is a way to isolate one mechanism so that we can inspect it.</p><blockquote class="pullquote">“A deduction today also changes what is available to compound tomorrow.”</blockquote></section>
+        <section class="chapter" id="model" data-chapter><h3>Give the idea forty years.<br>Or choose your own horizon.</h3><p>Change one assumption at a time. Start with the fee, then try the time horizon. The two lines share the same starting amount and hypothetical gross rate. Their only difference is the annual fee in the second path.</p><p>The default inputs are chosen for illustration. They are not estimates of future returns, normal fees or a suitable investment amount.</p>
+          <figure class="calculator" id="calculator" aria-labelledby="figure-title">
+            <div class="calculator-head"><p class="fig-number">FIG. 01 / A REPEATED CALCULATION</p><h4 id="figure-title">A fee changes the amount<br>left to compound.</h4><p>Hypothetical model · annual fee applied after growth each year.<br>No contributions, withdrawals, tax or inflation.</p></div>
+            <div class="model-controls" aria-label="Hypothetical model assumptions">
+              <div class="model-control"><label class="control-label" for="principal-number">Starting amount</label><div class="number-wrap"><span aria-hidden="true">£</span><input id="principal-number" aria-label="Starting amount in pounds" type="number" min="0" max="1000000" step="1" value="10000" inputmode="decimal" aria-describedby="model-error"></div><div class="range-wrap"><input id="principal-range" type="range" min="0" max="1000000" step="1" value="10000" aria-label="Starting amount slider, pounds"></div><div class="control-range" aria-hidden="true"><span>£0</span><span>£1,000,000</span></div></div>
+              <div class="model-control"><label class="control-label" for="years-number">Time horizon</label><div class="number-wrap"><input id="years-number" aria-label="Time horizon in whole years" type="number" min="1" max="40" step="1" value="40" inputmode="numeric" aria-describedby="model-error"><span aria-hidden="true">years</span></div><div class="range-wrap"><input id="years-range" type="range" min="1" max="40" step="1" value="40" aria-label="Time horizon slider, years"></div><div class="control-range" aria-hidden="true"><span>1 year</span><span>40 years</span></div></div>
+              <div class="model-control"><label class="control-label" for="growth-number">Annual gross growth</label><div class="number-wrap"><input id="growth-number" aria-label="Annual hypothetical gross growth in percent" type="number" min="-100" max="30" step="0.01" value="5" inputmode="decimal" aria-describedby="model-error"><span aria-hidden="true">%</span></div><div class="range-wrap"><input id="growth-range" type="range" min="-100" max="30" step="0.01" value="5" aria-label="Annual hypothetical gross growth slider, percent"></div><div class="control-range" aria-hidden="true"><span>−100%</span><span>30%</span></div></div>
+              <div class="model-control"><label class="control-label" for="fee-number">Annual percentage fee</label><div class="number-wrap"><input id="fee-number" aria-label="Annual fee in percent" type="number" min="0" max="5" step="0.01" value="0.75" inputmode="decimal" aria-describedby="model-error"><span aria-hidden="true">%</span></div><div class="range-wrap"><input id="fee-range" type="range" min="0" max="5" step="0.01" value="0.75" aria-label="Annual fee slider, percent"></div><div class="control-range" aria-hidden="true"><span>0%</span><span>5%</span></div></div>
+              <p class="control-error" id="model-error" role="status"></p>
+            </div>
+            <div class="model-actions"><p>Keep all four assumptions in view. The rate is a fixed input, not a forecast.</p><button type="button" class="reset" id="reset-model" disabled>Reset example</button></div>
+            <div class="model-results"><div><span class="result-label">Ending value without the fee</span><output id="no-fee-result" class="result-value">£70,400</output></div><div><span class="result-label">Ending value after the fee</span><output id="fee-result" class="result-value red">£52,095</output></div></div>
+            <div class="gap-result"><p><strong id="gap-result">£18,305 ending-value gap</strong> <span id="gap-percent">· 26.0% below the no-fee path</span></p><p class="gap-help">The gap includes fees and foregone compounding. It is not the sum of fees paid.</p></div>
+            <div class="chart-controls"><span>ONE MODEL / TWO VIEWS</span><div class="view-toggle" role="group" aria-label="View the same model as a chart or table"><button type="button" data-model-view="chart" aria-pressed="true" aria-controls="chart-view">Chart</button><button type="button" data-model-view="table" aria-pressed="false" aria-controls="table-view">Table</button></div></div>
+            <div class="chart-view" id="chart-view"><svg id="model-chart" viewBox="0 0 600 320" role="img" aria-labelledby="model-chart-title model-chart-description"><title id="model-chart-title">Hypothetical balances over forty years</title><desc id="model-chart-description">Using £10,000, 5% annual gross growth and a 0.75% annual fee: ending balance without the fee approximately £70,400; after the fee approximately £52,095. The table provides the numerical values.</desc><text x="25" y="50" fill="currentColor" font-size="13">The interactive chart requires JavaScript.</text><text x="25" y="78" fill="currentColor" font-size="12">Default hypothetical ending values are shown above.</text></svg></div>
+            <div class="table-view" id="table-view" tabindex="0" aria-label="Scrollable model data table" hidden><table class="data-table"><caption id="model-table-caption">Hypothetical yearly balances. Displayed amounts are rounded.</caption><thead><tr><th scope="col">Year</th><th scope="col">No annual fee</th><th scope="col">After annual fee</th><th scope="col">Ending-value gap</th></tr></thead><tbody id="model-table-body"></tbody></table></div>
+            <figcaption class="source-note"><p>Hypothetical example · Model created for this prototype · 23 October 2026 · Example data: <a href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener noreferrer">CC0<span class="sr-only">, opens in a new tab</span></a>.</p><p>CC0 applies only to this example’s numerical data, not the site or font assets. Values shown are rounded; calculations retain full precision.</p></figcaption>
+            <details class="model-method"><summary>The model, assumptions &amp; equations</summary><p>For starting amount <em>P</em>, annual gross rate <em>r</em>, annual fee <em>f</em> and whole years <em>n</em>, rates are expressed as decimals in these equations.</p><code class="formula">Without the fee: P × (1 + r)ⁿ<br>After the fee: P × [(1 + r) × (1 − f)]ⁿ<br>Ending-value gap: no-fee balance − after-fee balance<br>Percentage gap: gap ÷ no-fee balance × 100</code><p>The fee is applied to the post-growth balance at the end of each year. There are no contributions, withdrawals, tax, inflation or trading costs. A constant rate is an illustration, not an expectation. Percentage gap is undefined when the no-fee balance is zero.</p><p>At the default inputs, the first year ends at £10,500 without the fee and £10,421.25 after it. The £78.75 difference reduces the base available for the next year. Change the horizon to one year to inspect that step.</p></details>
+            <p class="sr-only" id="model-announcement" role="status"></p><noscript><p class="no-js-model">Default example: £10,000 starting amount, 40 years, 5% fixed annual gross growth and 0.75% annual fee. Approximate ending values are £70,400 and £52,095. Enable JavaScript to change inputs or inspect the complete yearly table.</p></noscript>
+          </figure>
+        </section>
+        <section class="chapter" id="interpretation" data-chapter><h3>Read the gap carefully.</h3><p>At the default inputs, the model produces an ending-value gap of about £18,305 after forty years. This is a result of our chosen assumptions, not a statistic about a real fund or an estimate of what someone will lose.</p><details class="sidenote"><summary>02 / Gap is not “fees paid”</summary><p>Fee deductions reduce the balance. The resulting smaller base also changes later compounding. The ending-value gap combines both effects; adding the actual fee payments would answer a different question.</p></details><p>It is tempting to describe the gap as “total fees”. That would be imprecise. The difference includes the deductions and the compounding that would have occurred on amounts no longer in the model.</p><p>Try setting the fee to zero. The paths coincide because their calculations become identical. Then try a shorter horizon. Fewer repetitions leave less time for the calculations to diverge. If the starting amount is zero, both paths remain zero and a percentage gap is not meaningful.</p><p>A negative gross rate changes the exercise again. Compounding describes repeated percentage changes; it does not always describe growth. The model allows a rate down to −100%, at which point the balance becomes zero after the first year.</p></section>
+        <section class="chapter" id="questions" data-chapter><h3>Better questions<br>than “is that a small fee?”</h3><ol class="question-list"><li><strong>What is the fee applied to?</strong>A percentage, a fixed charge and a transaction cost behave differently. This model uses only an annual percentage of the post-growth balance.</li><li><strong>When is it taken?</strong>Monthly deductions or different charging conventions change the calculation. Our timing assumption is explicit so that the result can be reproduced.</li><li><strong>What else is changing?</strong>Contributions, withdrawals, variable returns and inflation all change what the illustration can tell us. None is included here.</li><li><strong>What question does the comparison answer?</strong>It isolates the arithmetic effect of one fee under identical assumptions. It does not establish the quality, suitability or value of a real product.</li></ol></section>
+        <section class="chapter" id="limits" data-chapter><h3>A useful model<br>has visible edges.</h3><p>The smooth lines are a consequence of a fixed-rate calculation. They should not be mistaken for a realistic market path. The longer the horizon, the more care is needed when treating a simplified assumption as an explanation of a possible future.</p><details class="sidenote"><summary>03 / Money and purchasing power</summary><p>The model shows nominal pounds. It does not adjust for inflation, so it does not show what an ending balance might buy in the future.</p></details><p>There is also no product comparison here. A price or fee alone cannot describe every feature, service, restriction or risk. Our purpose is narrower: make one repeated mechanism clear, allow its assumptions to be changed and show the same result in a chart and a table.</p><p>That is a useful habit beyond this example. Before accepting a financial illustration, ask what goes in, what comes out and what has been left outside the frame.</p><aside class="advice" aria-labelledby="advice-title"><h4 id="advice-title">Education only. Not financial advice.</h4><p>This publication explains concepts and research methods. It does not provide personal investment recommendations, buy or sell calls, ratings or target prices. The hypothetical model is not a forecast or an invitation to invest. Investments can lose value, and suitability depends on individual circumstances.</p></aside><div class="article-finish"><span>Keep the question. Inspect the assumptions.</span><span aria-hidden="true">✳</span></div></section>
+      </div>
+    </div>
+  </article>
+
+  <div class="about-newsletter" data-reveal><section class="about" id="about" aria-labelledby="about-title"><p class="eyebrow red">A note from the author</p><h2 id="about-title">Learning, in the open.</h2><p>The Intrinsic Review is conceived as a publication by a young UK finance graduate, exploring how investing, portfolios and company research work. The promise is careful explanation, inspectable methods and room for uncertainty.</p><p class="bio-note">Working name and placeholder biography. The author’s name, qualifications, disclosures and editorial policy will be confirmed before launch.</p></section><section class="newsletter" id="newsletter" aria-labelledby="newsletter-title"><p class="eyebrow red">Letters from the Review</p><h2 id="newsletter-title">One idea worth<br>taking your time over.</h2><p>A considered note on investing and research. A little context, a useful question and something to read at your own pace.</p><form id="newsletter-form"><label for="newsletter-email">Your email address</label><div class="email-row"><input type="email" id="newsletter-email" autocomplete="email" inputmode="email" placeholder="you@example.com" required aria-describedby="newsletter-note newsletter-status"><button type="submit" id="newsletter-submit" disabled>Try sign-up <span aria-hidden="true">↗</span></button></div><p class="form-note" id="newsletter-note">Demo only. Validation happens here; no address is sent or saved.</p><p class="form-status" id="newsletter-status" role="status"></p><noscript><p class="form-note">This demonstration requires JavaScript. Your address cannot be submitted here.</p></noscript></form></section></div>
+</main>
+<footer class="wrap"><div class="footer"><div class="footer-brand">The Intrinsic <em>Review.</em></div><p>Independent finance education<br>The Margin / design direction 01 / v2</p><a href="#home">Back to the top <span class="arrow" aria-hidden="true">↑</span></a></div><details class="design-spec" id="design-spec"><summary>About this design prototype &amp; motion specification</summary><div class="design-spec-body"><p><strong>The Margin.</strong> An editorial reading room built around paper, annotations and visible assumptions. Literata carries the reading experience; Manrope structures the interface; platform monospace identifies figures and reproducible methods. The palette changes instantly between two independently designed light and dark themes.</p><p><strong>Build.</strong> One HTML file, inline CSS and JavaScript, Google Fonts as the only external page dependency. Search, filtering, model calculations and form demonstration run locally. The theme preference alone is saved in local storage when the browser permits it. No analytics, subscription endpoint or live financial data is connected.</p><div class="motion-table-wrap"><table class="motion-table" id="motion-table"><thead><tr><th>Trigger</th><th>Property / from → to</th><th>Duration</th><th>Easing</th><th>Stagger</th><th>Reduced motion</th></tr></thead><tbody><tr><td>First page view</td><td>Opacity 0 → 1; Y 16px → 0</td><td>520ms</td><td>cubic-bezier(.22,1,.36,1)</td><td>80ms</td><td>Immediate</td></tr><tr><td>Section enters viewport</td><td>Opacity 0 → 1; Y 18px → 0</td><td>480ms</td><td>cubic-bezier(.22,1,.36,1)</td><td>0ms</td><td>Immediate</td></tr><tr><td>Link hover / focus</td><td>Arrow X 0 → 5px</td><td>160ms</td><td>cubic-bezier(.2,.8,.2,1)</td><td>0ms</td><td>Stationary</td></tr><tr><td>Book hover / focus</td><td>Y 0 → −7px; rotate −3° → −1°</td><td>260ms</td><td>cubic-bezier(.22,1,.36,1)</td><td>0ms</td><td>Stationary</td></tr><tr><td>Series selection</td><td>Opacity 0 → 1; Y 5px → 0</td><td>200ms</td><td>cubic-bezier(.22,1,.36,1)</td><td>0ms</td><td>Immediate</td></tr><tr><td>Dialog opens</td><td>Opacity 0 → 1; Y 8px → 0</td><td>180ms</td><td>cubic-bezier(.22,1,.36,1)</td><td>0ms</td><td>Immediate</td></tr><tr><td>Chart / table changes</td><td>Opacity .35 → 1</td><td>180ms</td><td>cubic-bezier(.22,1,.36,1)</td><td>0ms</td><td>Immediate</td></tr><tr><td>Article scroll</td><td>Progress scaleX 0 → 1</td><td>0ms; rAF linked</td><td>Linear mapping</td><td>0ms</td><td>Meter suppressed</td></tr></tbody></table></div><p style="margin-top:17px">Theme, data paths, values, filters and native details change immediately. Anchor and shelf navigation is immediate; only transform and opacity are tweened. Source/licence text applies only to the original hypothetical example data.</p><button type="button" class="download-spec" id="download-spec" disabled>Download design &amp; model notes (.txt)</button></div></details></footer>
+
+<nav class="bottom-nav" aria-label="Mobile reading controls"><button type="button" data-open-menu disabled aria-haspopup="dialog" aria-controls="menu-dialog" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>Menu</button><button type="button" data-open-search disabled aria-haspopup="dialog"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.7"/><path d="m15.5 15.5 5 5"/></svg>Search</button><button type="button" data-theme-toggle disabled aria-label="Switch to dark theme"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16Z" fill="currentColor" stroke="none"/></svg>Theme</button><a href="#research"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5c4-1 6-1 9 1 3-2 5-2 9-1v14c-4-1-6-1-9 1-3-2-5-2-9-1ZM12 6v14"/></svg>Read</a></nav>
+
+<dialog id="menu-dialog" aria-labelledby="menu-title"><div class="dialog-inner"><div class="dialog-head"><h2 id="menu-title">Take your time.</h2><button type="button" class="dialog-close" data-close-menu aria-label="Close menu">×</button></div><nav class="modal-nav" aria-label="Publication sections"><a href="#home">Home <span>01</span></a><a href="#start-here">Start Here <span>02</span></a><a href="#learn">Learn <span>03</span></a><a href="#investing" data-open-note="investing">Investing <span>04</span></a><a href="#portfolio" data-open-note="portfolio">Portfolio <span>05</span></a><a href="#research">Research <span>06</span></a><a href="#markets" data-open-note="markets">Markets <span>07</span></a><a href="#about">About <span>08</span></a></nav><p class="menu-foot">Independent finance education.<br>One author. An open notebook.</p></div></dialog>
+<dialog id="search-dialog" aria-labelledby="search-title"><div class="dialog-inner"><div class="dialog-head"><h2 id="search-title">Follow your curiosity.</h2><button type="button" class="dialog-close" data-close-search aria-label="Close search">×</button></div><label class="search-label" for="search-input">Search the articles in this prototype</label><input class="search-field" type="search" id="search-input" autocomplete="off" placeholder="Try “fee”, “cash” or “risk”"><p class="search-help">Results open real notes on this page. Searches are not sent or saved.</p><p class="search-count" id="search-count" role="status"></p><ul class="search-results" id="search-results"></ul></div></dialog>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const ease = 'cubic-bezier(.22,1,.36,1)';
+  const animate = (element, frames, duration, delay = 0) => {
+    if (!reduced.matches && element && element.animate) element.animate(frames, { duration, delay, easing: ease, fill: 'backwards' });
+  };
+  const scrollOptions = () => ({ behavior: 'instant', block: 'start' });
+  const focusTarget = target => {
+    if (!target) return;
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    target.scrollIntoView(scrollOptions());
+    try { history.replaceState(null, '', `#${target.id}`); } catch (error) {}
+  };
+
+  // Light/dark changes are immediate; only this preference is persisted.
+  const themeButtons = $$('[data-theme-toggle]');
+  const updateThemeLabels = () => {
+    const dark = document.documentElement.dataset.theme === 'dark';
+    themeButtons.forEach(button => {
+      button.setAttribute('aria-label', `Switch to ${dark ? 'light' : 'dark'} theme`);
+      button.setAttribute('aria-pressed', String(dark));
+    });
+    $$('[data-theme-text]').forEach(label => { label.textContent = dark ? 'Light' : 'Dark'; });
+    $('meta[name="theme-color"]').content = dark ? '#20261F' : '#F6F2EA';
+  };
+  themeButtons.forEach(button => button.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try { localStorage.setItem('intrinsic-margin-v2-theme', next); } catch (error) {}
+    updateThemeLabels();
+  }));
+  updateThemeLabels();
+
+  // Filtering actual editorial entries. Search/navigation can reveal a filtered item.
+  const deskItems = $$('.desk-item');
+  const filters = $$('[data-filter]');
+  const applyFilter = category => {
+    let count = 0;
+    deskItems.forEach(item => {
+      item.hidden = category !== 'all' && item.dataset.category !== category;
+      if (!item.hidden) count++;
+    });
+    filters.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === category)));
+    $('#filter-count').textContent = `${count} ${count === 1 ? 'note' : 'notes'} ${category === 'all' ? 'on the desk' : `in ${category}`}`;
+  };
+  filters.forEach(button => button.addEventListener('click', () => applyFilter(button.dataset.filter)));
+  const revealTarget = target => {
+    if (!target) return;
+    if (target.classList.contains('desk-item')) {
+      applyFilter('all');
+      const details = $('details', target);
+      if (details) details.open = true;
+    }
+  };
+
+  // Clicks and native swipes share one active volume and article panel.
+  const books = $$('[data-book]');
+  const bookIndices = $$('[data-book-index]');
+  const panels = $$('.series-panel');
+  const track = $('#book-track');
+  let activeBook = -1;
+  let programmaticBookScroll = false;
+  let bookScrollFrame = 0;
+  let bookScrollIdle = 0;
+  const setActiveBook = (index, withMotion = false) => {
+    if (index === activeBook) return;
+    activeBook = index;
+    books.forEach((book, i) => book.setAttribute('aria-pressed', String(i === index)));
+    bookIndices.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
+    panels.forEach((panel, i) => { panel.hidden = i !== index; });
+    $('#series-count').textContent = `0${index + 1} / 03`;
+    if (withMotion) animate(panels[index], [{ opacity: 0, transform: 'translateY(5px)' }, { opacity: 1, transform: 'translateY(0)' }], 200);
+  };
+  const syncBookFromScroll = () => {
+    // A non-overflowing desktop shelf keeps the explicitly selected volume.
+    if (track.scrollWidth <= track.clientWidth + 2) return;
+    const viewport = track.getBoundingClientRect();
+    const centre = viewport.left + viewport.width / 2;
+    let nearest = 0;
+    let shortest = Infinity;
+    books.forEach((book, index) => {
+      const box = book.getBoundingClientRect();
+      const distance = Math.abs(box.left + box.width / 2 - centre);
+      if (distance < shortest) { shortest = distance; nearest = index; }
+    });
+    setActiveBook(nearest);
+  };
+  const settleBookScroll = () => {
+    clearTimeout(bookScrollIdle);
+    programmaticBookScroll = false;
+    syncBookFromScroll();
+  };
+  const selectBook = (index, withMotion = true) => {
+    setActiveBook(index, withMotion);
+    const viewport = track.getBoundingClientRect();
+    const box = books[index].getBoundingClientRect();
+    const desired = track.scrollLeft + box.left + box.width / 2 - viewport.left - viewport.width / 2;
+    const target = Math.max(0, Math.min(track.scrollWidth - track.clientWidth, desired));
+    clearTimeout(bookScrollIdle);
+    programmaticBookScroll = Math.abs(track.scrollLeft - target) > 2;
+    track.scrollTo({ left: target, behavior: 'instant' });
+    if (programmaticBookScroll) bookScrollIdle = setTimeout(settleBookScroll, 180);
+  };
+  track.addEventListener('scroll', () => {
+    clearTimeout(bookScrollIdle);
+    bookScrollIdle = setTimeout(settleBookScroll, 160);
+    if (bookScrollFrame) return;
+    bookScrollFrame = requestAnimationFrame(() => {
+      bookScrollFrame = 0;
+      if (!programmaticBookScroll) syncBookFromScroll();
+    });
+  }, { passive: true });
+  // A reader can interrupt an indexed scroll with a fresh swipe/wheel.
+  const releaseBookGuard = () => { programmaticBookScroll = false; };
+  track.addEventListener('pointerdown', releaseBookGuard, { passive: true });
+  track.addEventListener('touchstart', releaseBookGuard, { passive: true });
+  track.addEventListener('wheel', releaseBookGuard, { passive: true });
+  books.forEach(book => book.addEventListener('click', () => selectBook(Number(book.dataset.book))));
+  bookIndices.forEach(button => button.addEventListener('click', () => selectBook(Number(button.dataset.bookIndex))));
+  selectBook(0, false);
+
+  // Native modal dialogs provide focus containment and Escape. Destination focus
+  // happens in the close event, so asynchronous close cannot steal it back.
+  const menuDialog = $('#menu-dialog');
+  const searchDialog = $('#search-dialog');
+  const dialogState = new Map([[menuDialog, { opener: null, destination: null }], [searchDialog, { opener: null, destination: null }]]);
+  const openDialog = (dialog, opener) => {
+    const state = dialogState.get(dialog);
+    state.opener = opener;
+    state.destination = null;
+    dialog.showModal();
+    if (dialog === menuDialog) $$('[data-open-menu]').forEach(button => button.setAttribute('aria-expanded', 'true'));
+    animate(dialog, [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }], 180);
+  };
+  for (const dialog of [menuDialog, searchDialog]) {
+    dialog.addEventListener('close', () => {
+      if (dialog === menuDialog) $$('[data-open-menu]').forEach(button => button.setAttribute('aria-expanded', 'false'));
+      const state = dialogState.get(dialog);
+      if (state.destination) {
+        const target = state.destination;
+        state.destination = null;
+        revealTarget(target);
+        focusTarget(target);
+      } else if (state.opener && state.opener.isConnected) state.opener.focus({ preventScroll: true });
+    });
+    dialog.addEventListener('click', event => {
+      if (event.target !== dialog) return;
+      const box = dialog.getBoundingClientRect();
+      if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close();
+    });
+  }
+  // Explicit keyboard wrapping supplements native modal behaviour, including
+  // recovery when a browser places focus on the dialog or document body.
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Tab') return;
+    const dialog = [menuDialog, searchDialog].find(item => item.open);
+    if (!dialog) return;
+    const focusable = $$('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])', dialog).filter(element => element.tabIndex >= 0 && !element.hidden && element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden');
+    if (!focusable.length) {
+      event.preventDefault();
+      dialog.tabIndex = -1;
+      dialog.focus();
+      return;
+    }
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const current = document.activeElement;
+    if (!focusable.includes(current)) {
+      event.preventDefault();
+      (event.shiftKey ? last : first).focus();
+    } else if (event.shiftKey && current === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && current === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }, true);
+  $$('[data-open-menu]').forEach(button => button.addEventListener('click', () => openDialog(menuDialog, button)));
+  $('[data-close-menu]').addEventListener('click', () => menuDialog.close());
+  $$('.modal-nav a').forEach(link => link.addEventListener('click', event => {
+    event.preventDefault();
+    dialogState.get(menuDialog).destination = $(link.getAttribute('href'));
+    menuDialog.close();
+  }));
+  const searchInput = $('#search-input');
+  const searchResults = $('#search-results');
+  const searchArticles = $$('[data-searchable]').map(article => ({ element: article, title: article.dataset.searchTitle, category: article.dataset.searchCategory, text: `${article.dataset.searchTitle} ${article.dataset.searchCategory} ${article.textContent}`.toLowerCase() }));
+  const renderSearch = () => {
+    const terms = searchInput.value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    const matches = searchArticles.filter(article => terms.every(term => article.text.includes(term)));
+    searchResults.replaceChildren();
+    matches.forEach(article => {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      const title = document.createElement('strong');
+      const category = document.createElement('span');
+      link.href = `#${article.element.id}`;
+      title.textContent = article.title;
+      category.textContent = article.category;
+      link.append(title, category);
+      item.append(link);
+      searchResults.append(item);
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        dialogState.get(searchDialog).destination = article.element;
+        searchDialog.close();
+      });
+    });
+    if (!matches.length) {
+      const item = document.createElement('li');
+      item.className = 'empty';
+      item.textContent = 'No matching note. Try “cash”, “fees”, “time” or “risk”.';
+      searchResults.append(item);
+    }
+    $('#search-count').textContent = `${matches.length} ${matches.length === 1 ? 'article' : 'articles'} ${terms.length ? 'found' : 'available'}`;
+  };
+  $$('[data-open-search]').forEach(button => button.addEventListener('click', () => {
+    searchInput.value = '';
+    renderSearch();
+    openDialog(searchDialog, button);
+    searchInput.focus();
+  }));
+  $('[data-close-search]').addEventListener('click', () => searchDialog.close());
+  searchInput.addEventListener('input', renderSearch);
+  $$('[data-open-note]').filter(link => !link.closest('dialog')).forEach(link => link.addEventListener('click', event => {
+    event.preventDefault();
+    const target = document.getElementById(link.dataset.openNote);
+    revealTarget(target);
+    focusTarget(target);
+  }));
+  $$('.desktop-nav a').forEach(link => link.addEventListener('click', () => revealTarget($(link.getAttribute('href')))));
+
+  // One numeric model powers chart, direct labels, summary and yearly table.
+  const modelKeys = ['principal', 'years', 'growth', 'fee'];
+  const defaults = { principal: 10000, years: 40, growth: 5, fee: .75 };
+  const constraints = { principal: [0, 1000000], years: [1, 40], growth: [-100, 30], fee: [0, 5] };
+  const inputs = Object.fromEntries(modelKeys.map(key => [key, { number: $(`#${key}-number`), range: $(`#${key}-range`) }]));
+  const money = value => new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP', minimumFractionDigits: value > 0 && value < 100 ? 2 : 0, maximumFractionDigits: value > 0 && value < 100 ? 2 : 0 }).format(value);
+  let currentModel = null;
+  let currentView = 'chart';
+  let announcementTimer;
+  const readAssumptions = () => {
+    const assumptions = {};
+    let firstError = '';
+    modelKeys.forEach(key => {
+      const input = inputs[key].number;
+      const value = input.value === '' ? NaN : Number(input.value);
+      const [minimum, maximum] = constraints[key];
+      const valid = Number.isFinite(value) && value >= minimum && value <= maximum && (key !== 'years' || Number.isInteger(value));
+      input.setAttribute('aria-invalid', String(!valid));
+      if (!valid && !firstError) {
+        firstError = key === 'principal' ? 'Enter a starting amount from £0 to £1,000,000.' : key === 'years' ? 'Choose a whole number of years from 1 to 40.' : key === 'growth' ? 'Enter gross growth from −100% to 30%. A rate below −100% is not valid.' : 'Enter an annual fee from 0% to 5%.';
+      }
+      assumptions[key] = value;
+    });
+    $('#model-error').textContent = firstError;
+    return firstError ? null : assumptions;
+  };
+  const calculate = assumptions => {
+    const growth = 1 + assumptions.growth / 100;
+    const afterFee = growth * (1 - assumptions.fee / 100);
+    const rows = Array.from({ length: assumptions.years + 1 }, (_, year) => {
+      const noFee = assumptions.principal * Math.pow(growth, year);
+      const withFee = assumptions.principal * Math.pow(afterFee, year);
+      return { year, noFee, withFee, gap: noFee - withFee };
+    });
+    const end = rows[rows.length - 1];
+    return { assumptions, rows, end, percentage: end.noFee > 0 ? end.gap / end.noFee * 100 : null };
+  };
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const svgNode = (name, attributes, text) => {
+    const element = document.createElementNS(svgNS, name);
+    Object.entries(attributes || {}).forEach(([key, value]) => element.setAttribute(key, String(value)));
+    if (text !== undefined) element.textContent = text;
+    return element;
+  };
+  const axisMoney = value => value >= 1000000000 ? `£${(value / 1000000000).toFixed(1)}bn` : value >= 1000000 ? `£${(value / 1000000).toFixed(value % 1000000 === 0 ? 0 : 1)}m` : value >= 1000 ? `£${(value / 1000).toFixed(value % 1000 === 0 ? 0 : 1)}k` : value > 0 && value < 10 ? `£${value.toFixed(1)}` : `£${Math.round(value)}`;
+  const drawChart = () => {
+    if (!currentModel || currentView !== 'chart') return;
+    const svg = $('#model-chart');
+    const width = Math.max(220, Math.round($('#chart-view').clientWidth - 22));
+    const height = 320;
+    const narrow = width < 520;
+    const left = 47, right = narrow ? width - 12 : width - 166, top = 40, bottom = 264;
+    const rows = currentModel.rows;
+    const maxRaw = Math.max(1, ...rows.map(row => Math.max(row.noFee, row.withFee)));
+    const maxValue = maxRaw * 1.08;
+    const x = year => left + year / currentModel.assumptions.years * (right - left);
+    const y = value => bottom - value / maxValue * (bottom - top);
+    svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+    svg.replaceChildren();
+    svg.append(svgNode('title', { id: 'model-chart-title' }, 'Hypothetical balances, with direct labels for each path'));
+    svg.append(svgNode('desc', { id: 'model-chart-description' }, `With ${money(currentModel.assumptions.principal)} starting amount, ${currentModel.assumptions.growth}% fixed annual gross growth and ${currentModel.assumptions.fee}% annual fee for ${currentModel.assumptions.years} years: no-fee ending balance ${money(currentModel.end.noFee)}, after-fee ending balance ${money(currentModel.end.withFee)}. The table view contains the same yearly values.`));
+    [0, .5, 1].forEach(fraction => {
+      const value = maxValue * fraction;
+      const lineY = y(value);
+      svg.append(svgNode('line', { x1: left, x2: right, y1: lineY, y2: lineY, stroke: 'var(--rule)', 'stroke-width': 1 }));
+      svg.append(svgNode('text', { x: left - 8, y: lineY + 4, fill: 'var(--muted)', 'font-size': 10, 'text-anchor': 'end' }, axisMoney(value)));
+    });
+    const years = [...new Set([0, Math.round(currentModel.assumptions.years / 2), currentModel.assumptions.years])];
+    years.forEach(year => svg.append(svgNode('text', { x: x(year), y: bottom + 22, fill: 'var(--muted)', 'font-size': 10, 'text-anchor': 'middle' }, String(year))));
+    svg.append(svgNode('text', { x: (left + right) / 2, y: bottom + 44, fill: 'var(--muted)', 'font-size': 10, 'text-anchor': 'middle' }, 'Years from the start'));
+    const path = key => rows.map((row, index) => `${index ? 'L' : 'M'}${x(row.year).toFixed(2)},${y(row[key]).toFixed(2)}`).join(' ');
+    svg.append(svgNode('path', { d: path('noFee'), fill: 'none', stroke: 'var(--ink)', 'stroke-width': 2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }));
+    svg.append(svgNode('path', { d: path('withFee'), fill: 'none', stroke: 'var(--red)', 'stroke-width': 2.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', 'stroke-dasharray': '5 4' }));
+    const labels = [{ key: 'noFee', title: 'No annual fee', colour: 'var(--ink)', value: currentModel.end.noFee }, { key: 'withFee', title: 'After annual fee', colour: 'var(--red)', value: currentModel.end.withFee }];
+    labels.forEach(label => { label.actualY = y(label.value); label.labelY = Math.max(22, Math.min(231, label.actualY - (narrow ? 22 : 7))); });
+    labels.sort((a, b) => a.labelY - b.labelY);
+    if (labels[1].labelY - labels[0].labelY < 49) labels[1].labelY = labels[0].labelY + 49;
+    if (labels[1].labelY > 231) { labels[1].labelY = 231; labels[0].labelY = Math.min(labels[0].labelY, 182); }
+    labels.forEach(label => {
+      const labelX = narrow ? right - 7 : right + 14;
+      const anchor = narrow ? 'end' : 'start';
+      svg.append(svgNode('circle', { cx: right, cy: label.actualY, r: 3.5, fill: label.colour }));
+      svg.append(svgNode('path', { d: narrow ? `M${right},${label.actualY}V${label.labelY + 5}H${labelX + 2}` : `M${right},${label.actualY}L${labelX - 5},${label.labelY + 6}`, fill: 'none', stroke: label.colour, 'stroke-width': 1 }));
+      const text = svgNode('text', { x: labelX, y: label.labelY, fill: label.colour, 'font-size': 11, 'text-anchor': anchor, 'paint-order': 'stroke', stroke: 'var(--field)', 'stroke-width': 5, 'stroke-linejoin': 'round' });
+      text.append(svgNode('tspan', { x: labelX, dy: 0 }, label.title));
+      text.append(svgNode('tspan', { x: labelX, dy: 17, 'font-size': 12, 'font-weight': 700 }, money(label.value)));
+      svg.append(text);
+    });
+  };
+  const renderTable = () => {
+    const body = $('#model-table-body');
+    const fragment = document.createDocumentFragment();
+    currentModel.rows.forEach(row => {
+      const tr = document.createElement('tr');
+      [['Year', row.year], ['No annual fee', money(row.noFee)], ['After annual fee', money(row.withFee)], ['Ending-value gap', money(row.gap)]].forEach(([label, value], index) => {
+        const cell = document.createElement(index === 0 ? 'th' : 'td');
+        if (index === 0) cell.scope = 'row';
+        cell.dataset.label = label;
+        cell.textContent = value;
+        tr.append(cell);
+      });
+      fragment.append(tr);
+    });
+    body.replaceChildren(fragment);
+    $('#model-table-caption').textContent = `Hypothetical yearly balances: ${money(currentModel.assumptions.principal)} starting amount, ${currentModel.assumptions.growth}% gross growth, ${currentModel.assumptions.fee}% annual fee. Rounded display values.`;
+  };
+  const updateModel = (announce = true) => {
+    const assumptions = readAssumptions();
+    if (!assumptions) return;
+    modelKeys.forEach(key => { inputs[key].range.value = assumptions[key]; });
+    currentModel = calculate(assumptions);
+    $('#no-fee-result').textContent = money(currentModel.end.noFee);
+    $('#fee-result').textContent = money(currentModel.end.withFee);
+    $('#gap-result').textContent = `${money(currentModel.end.gap)} ending-value gap`;
+    $('#gap-percent').textContent = currentModel.percentage === null ? '· percentage not defined for a zero no-fee balance' : `· ${currentModel.percentage.toFixed(1)}% below the no-fee path`;
+    renderTable();
+    drawChart();
+    clearTimeout(announcementTimer);
+    if (announce) announcementTimer = setTimeout(() => {
+      $('#model-announcement').textContent = `Model updated. After ${assumptions.years} years: without the fee ${money(currentModel.end.noFee)}; after the fee ${money(currentModel.end.withFee)}. Ending-value gap ${money(currentModel.end.gap)}.`;
+    }, 350);
+  };
+  modelKeys.forEach(key => {
+    inputs[key].number.addEventListener('input', () => updateModel());
+    inputs[key].range.addEventListener('input', () => {
+      inputs[key].number.value = inputs[key].range.value;
+      updateModel();
+    });
+  });
+  $('#reset-model').addEventListener('click', () => {
+    modelKeys.forEach(key => { inputs[key].number.value = defaults[key]; inputs[key].range.value = defaults[key]; });
+    updateModel();
+  });
+  $$('[data-model-view]').forEach(button => button.addEventListener('click', () => {
+    const next = button.dataset.modelView;
+    if (next === currentView) return;
+    currentView = next;
+    $$('[data-model-view]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    $('#chart-view').hidden = next !== 'chart';
+    $('#table-view').hidden = next !== 'table';
+    if (next === 'chart') drawChart();
+    animate(next === 'chart' ? $('#chart-view') : $('#table-view'), [{ opacity: .35 }, { opacity: 1 }], 180);
+  }));
+  updateModel(false);
+  if ('ResizeObserver' in window) new ResizeObserver(() => drawChart()).observe($('#calculator'));
+  else window.addEventListener('resize', drawChart);
+
+  // An article-scoped meter and contents marker, updated at most once per frame.
+  const longread = $('[data-longread]');
+  const chapters = $$('[data-chapter]');
+  const tocLinks = $$('.toc a');
+  const meter = $('#reading-meter');
+  let scrollFrame = 0;
+  const updateReading = () => {
+    scrollFrame = 0;
+    const box = longread.getBoundingClientRect();
+    const reading = box.top <= 0 && box.bottom > 0;
+    const distance = Math.max(1, box.height - innerHeight);
+    const progress = Math.max(0, Math.min(1, -box.top / distance));
+    meter.style.opacity = reading && !reduced.matches ? '1' : '0';
+    meter.setAttribute('aria-hidden', String(!reading || reduced.matches));
+    meter.setAttribute('aria-valuenow', String(Math.round(progress * 100)));
+    $('span', meter).style.transform = `scaleX(${progress})`;
+    let active = chapters[0];
+    chapters.forEach(chapter => { if (chapter.getBoundingClientRect().top <= 160) active = chapter; });
+    tocLinks.forEach(link => {
+      if (link.getAttribute('href') === `#${active.id}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  };
+  const requestReading = () => { if (!scrollFrame) scrollFrame = requestAnimationFrame(updateReading); };
+  window.addEventListener('scroll', requestReading, { passive: true });
+  window.addEventListener('resize', requestReading, { passive: true });
+  updateReading();
+  tocLinks.forEach(link => link.addEventListener('click', event => { event.preventDefault(); focusTarget($(link.getAttribute('href'))); }));
+
+  // Email demonstration: never submit, transmit or persist the address.
+  $('#newsletter-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const email = $('#newsletter-email');
+    if (!email.reportValidity()) return;
+    $('#newsletter-status').textContent = 'The address format is valid. Demo complete: no subscription was created, and your address was not sent or saved.';
+  });
+  $('#newsletter-email').addEventListener('input', () => { $('#newsletter-status').textContent = ''; });
+
+  // Plain-text handoff notes, generated from the actual visible specification.
+  $('#download-spec').addEventListener('click', () => {
+    const lines = [
+      'THE INTRINSIC REVIEW / THE MARGIN / V2',
+      'Design prototype — 23 October 2026',
+      '',
+      'TYPE: Literata + Manrope; system monospace for figure titles and methods.',
+      'LIGHT: #F6F2EA paper; #242822 ink; #A83D25 vermilion; #E0E5CE olive; #596052 secondary text; #FFFEFA field.',
+      'DARK: #20261F paper; #F2F0E7 ink; #F2AA91 vermilion; #303B2D olive; #C6CDBF secondary text; #283025 field.',
+      'GRID: 1320px maximum content; 56/32/22px gutters, 18px at <=360px; article max62ch.',
+      '',
+      'MOTION: trigger | property/from-to | duration | easing | stagger | reduced motion',
+      ...$$('#motion-table tbody tr').map(row => $$('td', row).map(cell => cell.textContent).join(' | ')),
+      '',
+      'MODEL: P*(1+r)^n without fee; P*((1+r)*(1-f))^n after fee. The annual fee is applied after hypothetical growth each year.',
+      'Ending-value gap is fees plus foregone compounding, NOT the sum of fees paid. Percentage is undefined when the no-fee value is zero.',
+      'No contributions, withdrawals, tax, inflation or trading costs. Fixed rate, not a forecast. Horizon 1–40 whole years; gross rate cannot be below -100%.',
+      'Example data only: CC0. No licence claim for site or font assets.',
+      '',
+      'IMPLEMENTED: native modal menu/search, local article search, actual category filtering, saved theme (localStorage guarded), mobile thumb nav, series index with real article panels, local calculator with chart/table, article progress/scrollspy, expandable sidenotes, validation-only newsletter demo.',
+      'No financial recommendations, real holdings assertions, network subscriptions or live financial data.',
+      'No claim of production accessibility certification or measured Lighthouse score.'
+    ];
+    const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'the-margin-v2-design-notes.txt';
+    document.body.append(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  });
+
+  // Progressive enhancement completes before controls become enabled/collapsed.
+  $$('[data-open-search], [data-open-menu], [data-theme-toggle], #reset-model, #newsletter-submit, #download-spec').forEach(button => { button.disabled = false; });
+  document.documentElement.classList.add('js');
+  $$('[data-intro]').forEach((element, index) => animate(element, [{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'translateY(0)' }], 520, index * 80));
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(entries => entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animate(entry.target, [{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'translateY(0)' }], 480);
+        observer.unobserve(entry.target);
+      }
+    }), { threshold: .06 });
+    $$('[data-reveal]').forEach(element => observer.observe(element));
+  }
+  reduced.addEventListener('change', event => {
+    if (event.matches && document.getAnimations) document.getAnimations().forEach(animation => animation.finish());
+    updateReading();
+  });
+})();
+</script>
+</body>
+</html>
